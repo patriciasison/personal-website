@@ -2,19 +2,22 @@ const theme = {
   breakpoint: {
     mobile: {
       media: 360,
-      body: 320,
+      width: 300,
     },
     tablet: {
       media: 768,
-      body: 700,
+      width: 680,
+      height: 670,
     },
     laptop: {
       media: 1024,
-      body: 930,
+      width: 930,
+      height: 570,
     },
     desktop: {
-      media: 1440,
-      body: 1360,
+      media: 1280,
+      width: 1200,
+      height: 770,
     },
   },
   color: {
@@ -70,7 +73,8 @@ const theme = {
     large: "2.5rem",
     xlarge: "2.75rem",
     xxlarge: "3rem",
-    xxxlarge: "6rem",
+    xxxlarge: "4rem",
+    xxxxlarge: "6rem",
   },
 }
 

@@ -66,6 +66,7 @@ export const TextSize = {
   MID: theme.size.xxsmall,
   LARGE: theme.size.xsmall,
   XLARGE: theme.size.small,
+  INHERIT: "inherit",
 }
 
 export const TextStyle = {
@@ -91,6 +92,7 @@ Text.defaultProps = {
   decoration: TextDecoration.NONE,
   fontStyle: TextStyle.NORMAL,
   letterSpacing: "normal",
+  size: TextSize.INHERIT,
   transform: TextTransform.NONE,
   weight: TextWeight.REGULAR,
   marginBottom: "0",
@@ -103,7 +105,7 @@ Text.propTypes = {
   decoration: PropTypes.oneOf(Object.values(TextDecoration)),
   fontStyle: PropTypes.oneOf(Object.values(TextStyle)),
   letterSpacing: PropTypes.string,
-  size: PropTypes.oneOf(Object.values(TextSize)).isRequired,
+  size: PropTypes.oneOf(Object.values(TextSize)),
   transform: PropTypes.oneOf(Object.values(TextTransform)),
   weight: PropTypes.oneOf(Object.values(TextWeight)),
   marginBottom: PropTypes.string,

@@ -17,7 +17,7 @@ import {
   TextStyle,
 } from "../bits"
 import theme from "../bits/theme"
-import { ColorMode, SiteRoute } from "../config"
+import { ColorMode } from "../config"
 
 const HomeColor = {
   [ColorMode.LIGHT]: {
@@ -32,17 +32,14 @@ const HomeColor = {
 }
 
 const cssSection = theme => `
-  height: calc(51vh + 10px);
+  background: url(${patternMobile}) bottom center no-repeat, linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light});
+  height: 380px;
   top: 0;
   width: 100%;
 
-  @media screen and (max-width: ${theme.breakpoint.tablet.media}px) {
-    background: url(${patternMobile}) bottom center no-repeat, linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light});
-    height: 380px;
-  }
-
   @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
     background: url(${patternTablet}) bottom center no-repeat, linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light});
+    height: calc(51vh + 10px);
     min-height: 350px;
   }
 
@@ -65,44 +62,48 @@ const StyledMainContainer = styled.div`
   align-items: center;
   background: none;
   display: flex;
-  height: calc(
-    100vh - 2 * (2 * ${theme.spacing.large} + ${theme.size.xxxsmall})
-  );
-  justify-content: center;
+  flex-direction: column-reverse;
+  height: auto;
+  justify-content: flex-start;
   position: absolute;
   width: 100%;
 
   @media screen and (max-width: ${theme.breakpoint.tablet.media}px) {
-    flex-direction: column-reverse;
-    height: auto;
-    justify-content: flex-start;
     top: calc(4 * (${theme.spacing.large} + ${theme.size.large}));
   }
 
   @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
-    margin: 0 calc((100vw - ${theme.breakpoint.tablet.body}px) / 2);
+    flex-direction: row;
+    height: calc(
+      100vh - 2 * (2 * ${theme.spacing.large} + ${theme.size.xxxsmall})
+    );
+    justify-content: center;
+    margin: 0 calc((100vw - ${theme.breakpoint.tablet.width}px) / 2);
     min-height: calc(
-      670px - 2 * (2 * ${theme.spacing.large} + ${theme.size.xxxsmall})
+      ${theme.breakpoint.tablet.height}px - 2 *
+        (2 * ${theme.spacing.large} + ${theme.size.xxxsmall})
     );
     top: calc(${theme.spacing.large} + ${theme.size.xxsmall});
-    width: ${theme.breakpoint.tablet.body}px;
+    width: ${theme.breakpoint.tablet.width}px;
   }
 
   @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
-    margin: 0 calc((100vw - ${theme.breakpoint.laptop.body}px) / 2);
+    margin: 0 calc((100vw - ${theme.breakpoint.laptop.width}px) / 2);
     min-height: calc(
-      570px - 2 * (2 * ${theme.spacing.large} + ${theme.size.xxxsmall})
+      ${theme.breakpoint.laptop.height}px - 2 *
+        (2 * ${theme.spacing.large} + ${theme.size.xxxsmall})
     );
     top: calc(${theme.spacing.large} + ${theme.size.xxxsmall});
-    width: ${theme.breakpoint.laptop.body}px;
+    width: ${theme.breakpoint.laptop.width}px;
   }
 
   @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
-    margin: 0 calc((100vw - ${theme.breakpoint.desktop.body}px) / 2);
+    margin: 0 calc((100vw - ${theme.breakpoint.desktop.width}px) / 2);
     min-height: calc(
-      770px - 2 * (2 * ${theme.spacing.large} + ${theme.size.xxxsmall})
+      ${theme.breakpoint.desktop.height}px - 2 *
+        (2 * ${theme.spacing.large} + ${theme.size.xxxsmall})
     );
-    width: ${theme.breakpoint.desktop.body}px;
+    width: ${theme.breakpoint.desktop.width}px;
   }
 `
 
@@ -174,11 +175,6 @@ const Home = ({ location }) => {
 
   const colorScheme = HomeColor[ColorMode.LIGHT]
 
-  const activeNavItemId =
-    location.pathname === "/"
-      ? SiteRoute.HOME
-      : location.pathname.replace(/\/$/, "")
-
   const [isMobileView, setIsMobileView] = useState(false)
   const [navBgEnabled, setNavBgEnabled] = useState(false)
   const [photoSize, setPhotoSize] = useState(PhotoSize.DESKTOP)
@@ -222,10 +218,7 @@ const Home = ({ location }) => {
   return (
     <>
       <StyledSection />
-      <Navbar
-        activeNavItemId={activeNavItemId}
-        backgroundEnabled={navBgEnabled}
-      />
+      <Navbar pathname={location.pathname} backgroundEnabled={navBgEnabled} />
 
       <StyledMainContainer>
         {isMobileView && (
@@ -272,7 +265,7 @@ const Home = ({ location }) => {
           <Heading
             color={colorScheme.titleColor}
             letterSpacing=".3rem"
-            size={HeadingSize.MID}
+            size={HeadingSize.SMALL}
             transform={HeadingTransform.CAPITALIZE}
           >
             Software Engineer

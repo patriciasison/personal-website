@@ -55,11 +55,13 @@ const Heading = ({
 )
 
 export const HeadingSize = {
-  SMALL: theme.size.mid,
-  MID: theme.size.large,
-  LARGE: theme.size.xlarge,
-  XLARGE: theme.size.xxlarge,
-  XXLARGE: theme.size.xxxlarge,
+  XSMALL: theme.size.mid,
+  SMALL: theme.size.large,
+  MID: theme.size.xlarge,
+  LARGE: theme.size.xxlarge,
+  XLARGE: theme.size.xxxlarge,
+  XXLARGE: theme.size.xxxxlarge,
+  INHERIT: "inherit",
 }
 
 export const HeadingTransform = {
@@ -74,13 +76,15 @@ export const HeadingWeight = {
   MEDIUM: "500",
   BOLD: "700",
   BLACK: "900",
+  INHERIT: "inherit",
 }
 
 Heading.defaultProps = {
   letterSpacing: "normal",
   opacity: 100,
+  size: HeadingSize.INHERIT,
   transform: HeadingTransform.NONE,
-  weight: HeadingWeight.REGULAR,
+  weight: HeadingWeight.INHERIT,
   marginBottom: "0",
   marginRight: "0",
 }
@@ -90,7 +94,7 @@ Heading.propTypes = {
   color: PropTypes.string.isRequired,
   letterSpacing: PropTypes.string,
   opacity: PropTypes.number,
-  size: PropTypes.oneOf(Object.values(HeadingSize)).isRequired,
+  size: PropTypes.oneOf(Object.values(HeadingSize)),
   transform: PropTypes.oneOf(Object.values(HeadingTransform)),
   weight: PropTypes.oneOf(Object.values(HeadingWeight)),
   style: PropTypes.object,

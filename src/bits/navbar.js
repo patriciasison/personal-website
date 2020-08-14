@@ -46,24 +46,20 @@ const StyledNavbar = styled.div`
 const cssContainer = theme => `
   display: flex;
   justify-content: center;
-  padding: ${theme.spacing.large} 0;
-
-  @media screen and (max-width: ${theme.breakpoint.tablet.media}px) {
-    padding-bottom: 0;
-    width: ${theme.breakpoint.mobile.body}px;
-  }
+  padding-top: ${theme.spacing.large};
+  width: ${theme.breakpoint.mobile.width}px;
 
   @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
-    width: ${theme.breakpoint.tablet.body}px;
+    width: ${theme.breakpoint.tablet.width}px;
   }
 
   @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
     justify-content: flex-end;
-    width: ${theme.breakpoint.laptop.body}px;
+    width: ${theme.breakpoint.laptop.width}px;
   }
 
   @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
-    width: ${theme.breakpoint.desktop.body}px;
+    width: ${theme.breakpoint.desktop.width}px;
   }
 `
 
@@ -73,9 +69,12 @@ const StyledContainer = styled.div`
 
 const cssNavItem = ({ theme, active, color, highlight }) => `
   align-items: center;
+  border-bottom: 3px solid transparent;
+  box-sizing: border-box;
   color: ${color};
   display: flex;
   font-size: ${theme.size.large};
+  padding: 0 ${theme.spacing.mid} ${theme.spacing.mid} ${theme.spacing.mid};
   text-decoration: none;
   text-transform: uppercase;
 
@@ -83,20 +82,10 @@ const cssNavItem = ({ theme, active, color, highlight }) => `
     margin-right: ${theme.spacing.xxlarge};
   }
 
-  @media screen and (max-width: ${theme.breakpoint.tablet.media}px) {
-    border-bottom: 3px solid transparent;
-    box-sizing: border-box;
-    padding: 0 ${theme.spacing.mid} ${theme.spacing.mid} ${theme.spacing.mid};
-
-    ${active === "true" && `border-bottom: 3px solid ${highlight};`}
-  }
+  ${active === "true" && `border-bottom: 3px solid ${highlight}`};
   
   @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
     font-size: ${theme.size.xxsmall};
-
-    &:not(:last-child) {
-      margin-right: ${theme.spacing.xxxlarge};
-    }
 
     ${
       active === "true"
@@ -117,7 +106,6 @@ const cssNavItem = ({ theme, active, color, highlight }) => `
 
   @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
     font-size: ${theme.size.xxxsmall};
-    padding-right: 0;
   }
 `
 
@@ -125,8 +113,10 @@ const StyledNavItem = styled(Link)`
   ${props => cssNavItem(props)}
 `
 
-const Navbar = ({ navItems, activeNavItemId, backgroundEnabled }) => {
+const Navbar = ({ navItems, pathname, backgroundEnabled }) => {
   const colorScheme = NavbarColor[ColorMode.LIGHT]
+  const activeNavItemId =
+    pathname === "/" ? SiteRoute.HOME : pathname.replace(/\/$/, "")
   const [showIcons, setShowIcons] = useState(false)
 
   useEffect(() => {
@@ -216,7 +206,7 @@ Navbar.defaultProps = {
 
 Navbar.propTypes = {
   navItems: PropTypes.arrayOf(PropTypes.shape(navItemShape)).isRequired,
-  activeNavItemId: PropTypes.oneOf(Object.values(SiteRoute)).isRequired,
+  pathname: PropTypes.string.isRequired,
   backgroundEnabled: PropTypes.bool,
 }
 

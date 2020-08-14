@@ -1,5 +1,5 @@
 export { default as Button } from "./button"
-export { default as Container } from "./container"
+export { default as Container, ContainerDirection } from "./container"
 export {
   default as Heading,
   HeadingSize,
