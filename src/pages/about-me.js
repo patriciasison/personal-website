@@ -7,25 +7,18 @@ import vectorMeetup from "../assets/vector-meetup.png"
 import vectorSoftwareEngineer from "../assets/vector-software-engineer.png"
 import vectorWebDevelopment from "../assets/vector-web-development.png"
 import { ColorMode } from "../config"
-import {
-  Container,
-  ContainerDirection,
-  Heading,
-  HeadingSize,
-  HeadingWeight,
-  Navbar,
-} from "../bits"
+import { Container, Heading, HeadingSize, HeadingWeight, Navbar } from "../bits"
 import theme from "../bits/theme"
 
 const AboutMeColor = {
   [ColorMode.LIGHT]: {
-    textColor: theme.color.black.light,
-    highlightTextColor: theme.color.blue.xdark,
-    subTextColor: theme.color.black.xlight,
+    text: theme.color.black.light,
+    highlightText: theme.color.blue.xdark,
+    subText: theme.color.black.xlight,
   },
 }
 
-const cssSubContainer = theme => `
+const SubContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -35,7 +28,9 @@ const cssSubContainer = theme => `
 
   @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
     flex-direction: row;
-    height: calc(100vh - 2 * (${theme.spacing.xxlarge} + ${theme.size.xxsmall}));
+    height: calc(
+      100vh - 2 * (${theme.spacing.xxlarge} + ${theme.size.xxsmall})
+    );
     margin-bottom: calc(${theme.spacing.xxlarge} + ${theme.size.xxsmall});
     min-height: calc(
       ${theme.breakpoint.tablet.height}px - 2 *
@@ -44,7 +39,9 @@ const cssSubContainer = theme => `
   }
 
   @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
-    height: calc(100vh - 2 * (${theme.spacing.xxlarge} + ${theme.size.xxxsmall}));
+    height: calc(
+      100vh - 2 * (${theme.spacing.xxlarge} + ${theme.size.xxxsmall})
+    );
     margin-bottom: calc(${theme.spacing.xxlarge} + ${theme.size.xxxsmall});
     min-height: calc(
       ${theme.breakpoint.laptop.height}px - 2 *
@@ -60,11 +57,7 @@ const cssSubContainer = theme => `
   }
 `
 
-const StyledSubContainer = styled.div`
-  ${({ theme }) => cssSubContainer(theme)}
-`
-
-const cssVectorContainer = theme => `
+const ImageContainer = styled.div`
   align-items: center;
   display: flex;
   justify-content: center;
@@ -80,18 +73,14 @@ const cssVectorContainer = theme => `
       justify-content: flex-end;
       margin-bottom: 0;
     }
-  
+
     &:last-child {
       justify-content: flex-start;
     }
   }
 `
 
-const StyledVectorContainer = styled.div`
-  ${({ theme }) => cssVectorContainer(theme)}
-`
-
-const StyledPhotoContainer = styled.img`
+const Image = styled.img`
   width: 75%;
 
   @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
@@ -103,7 +92,7 @@ const StyledPhotoContainer = styled.img`
   }
 `
 
-const cssTextContainer = () => `
+const TextContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -142,38 +131,34 @@ const cssTextContainer = () => `
   }
 `
 
-const StyledTextContainer = styled.div`
-  ${props => cssTextContainer(props)}
-`
-
 const AboutMe = ({ location }) => {
   const colorScheme = AboutMeColor[ColorMode.LIGHT]
 
   return (
     <>
       <Navbar pathname={location.pathname} />
-      <Container direction={ContainerDirection.VERTICAL}>
-        <StyledSubContainer>
-          <StyledVectorContainer>
-            <StyledPhotoContainer src={vectorSoftwareEngineer} />
-          </StyledVectorContainer>
-          <StyledTextContainer>
+      <Container>
+        <SubContainer>
+          <ImageContainer>
+            <Image src={vectorSoftwareEngineer} />
+          </ImageContainer>
+          <TextContainer>
             <Heading
-              color={colorScheme.textColor}
+              color={colorScheme.text}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
               Passionate, adaptive,
             </Heading>
             <Heading
-              color={colorScheme.textColor}
+              color={colorScheme.text}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
               and organized
             </Heading>
             <Heading
-              color={colorScheme.highlightTextColor}
+              color={colorScheme.highlightText}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
               marginBottom={theme.spacing.mid}
@@ -181,66 +166,66 @@ const AboutMe = ({ location }) => {
               software engineer
             </Heading>
             <Heading
-              color={colorScheme.subTextColor}
+              color={colorScheme.subText}
               size={HeadingSize.SMALL}
               weight={HeadingWeight.MEDIUM}
             >
               who has been in the
             </Heading>
             <Heading
-              color={colorScheme.subTextColor}
+              color={colorScheme.subText}
               size={HeadingSize.SMALL}
               weight={HeadingWeight.MEDIUM}
             >
               tech industry for{" "}
-              <Heading color={colorScheme.highlightTextColor}>4 years</Heading>.
+              <Heading color={colorScheme.highlightText}>4 years</Heading>.
             </Heading>
-          </StyledTextContainer>
-        </StyledSubContainer>
+          </TextContainer>
+        </SubContainer>
 
-        <StyledSubContainer>
-          <StyledTextContainer>
+        <SubContainer>
+          <TextContainer>
             <Heading
-              color={colorScheme.textColor}
+              color={colorScheme.text}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
               Experienced in
             </Heading>
             <Heading
-              color={colorScheme.highlightTextColor}
+              color={colorScheme.highlightText}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
               full-stack
             </Heading>
             <Heading
-              color={colorScheme.highlightTextColor}
+              color={colorScheme.highlightText}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
-              web development<Heading color={colorScheme.textColor}>.</Heading>
+              web development<Heading color={colorScheme.text}>.</Heading>
             </Heading>
-          </StyledTextContainer>
-          <StyledVectorContainer>
-            <StyledPhotoContainer src={vectorWebDevelopment} />
-          </StyledVectorContainer>
-        </StyledSubContainer>
+          </TextContainer>
+          <ImageContainer>
+            <Image src={vectorWebDevelopment} />
+          </ImageContainer>
+        </SubContainer>
 
-        <StyledSubContainer>
-          <StyledVectorContainer>
-            <StyledPhotoContainer src={vectorFrontend} />
-          </StyledVectorContainer>
-          <StyledTextContainer>
+        <SubContainer>
+          <ImageContainer>
+            <Image src={vectorFrontend} />
+          </ImageContainer>
+          <TextContainer>
             <Heading
-              color={colorScheme.textColor}
+              color={colorScheme.text}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
               Knowledgeable in
             </Heading>
             <Heading
-              color={colorScheme.highlightTextColor}
+              color={colorScheme.highlightText}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
               marginBottom={theme.spacing.mid}
@@ -248,116 +233,115 @@ const AboutMe = ({ location }) => {
               front-end development
             </Heading>
             <Heading
-              color={colorScheme.subTextColor}
+              color={colorScheme.subText}
               size={HeadingSize.SMALL}
               weight={HeadingWeight.MEDIUM}
             >
               that helps ensure and promote
             </Heading>
             <Heading
-              color={colorScheme.highlightTextColor}
+              color={colorScheme.highlightText}
               size={HeadingSize.SMALL}
               weight={HeadingWeight.MEDIUM}
             >
-              good UI/UX<Heading color={colorScheme.textColor}>.</Heading>
+              good UI/UX<Heading color={colorScheme.text}>.</Heading>
             </Heading>
-          </StyledTextContainer>
-        </StyledSubContainer>
+          </TextContainer>
+        </SubContainer>
 
-        <StyledSubContainer>
-          <StyledTextContainer>
+        <SubContainer>
+          <TextContainer>
             <Heading
-              color={colorScheme.textColor}
+              color={colorScheme.text}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
               Puts great emphasis
             </Heading>
             <Heading
-              color={colorScheme.textColor}
+              color={colorScheme.text}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
               on the{" "}
-              <Heading color={colorScheme.highlightTextColor}>
+              <Heading color={colorScheme.highlightText}>
                 quality of code
               </Heading>
               .
             </Heading>
-          </StyledTextContainer>
-          <StyledVectorContainer>
-            <StyledPhotoContainer src={vectorCodeQuality} />
-          </StyledVectorContainer>
-        </StyledSubContainer>
+          </TextContainer>
+          <ImageContainer>
+            <Image src={vectorCodeQuality} />
+          </ImageContainer>
+        </SubContainer>
 
-        <StyledSubContainer>
-          <StyledVectorContainer>
-            <StyledPhotoContainer src={vectorImmersed} />
-          </StyledVectorContainer>
-          <StyledTextContainer>
+        <SubContainer>
+          <ImageContainer>
+            <Image src={vectorImmersed} />
+          </ImageContainer>
+          <TextContainer>
             <Heading
-              color={colorScheme.textColor}
+              color={colorScheme.text}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
               Has been immersed
             </Heading>
             <Heading
-              color={colorScheme.highlightTextColor}
+              color={colorScheme.highlightText}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
-              <Heading color={colorScheme.textColor}>in </Heading>
+              <Heading color={colorScheme.text}>in </Heading>
               business analysis
-              <Heading color={colorScheme.textColor}>, </Heading>
+              <Heading color={colorScheme.text}>, </Heading>
             </Heading>
             <Heading
-              color={colorScheme.highlightTextColor}
+              color={colorScheme.highlightText}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
               product planning
-              <Heading color={colorScheme.textColor}>, </Heading>
+              <Heading color={colorScheme.text}>, </Heading>
             </Heading>
             <Heading
-              color={colorScheme.highlightTextColor}
+              color={colorScheme.highlightText}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
-              QA testing<Heading color={colorScheme.textColor}>.</Heading>
+              QA testing<Heading color={colorScheme.text}>.</Heading>
             </Heading>
-          </StyledTextContainer>
-        </StyledSubContainer>
+          </TextContainer>
+        </SubContainer>
 
-        <StyledSubContainer>
-          <StyledTextContainer>
+        <SubContainer>
+          <TextContainer>
             <Heading
-              color={colorScheme.highlightTextColor}
+              color={colorScheme.highlightText}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
               Attends tech meetups
             </Heading>
             <Heading
-              color={colorScheme.highlightTextColor}
+              color={colorScheme.highlightText}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
-              and events{" "}
-              <Heading color={colorScheme.textColor}>for new</Heading>
+              and events <Heading color={colorScheme.text}>for new</Heading>
             </Heading>
             <Heading
-              color={colorScheme.textColor}
+              color={colorScheme.text}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
               learnings and insights.
             </Heading>
-          </StyledTextContainer>
-          <StyledVectorContainer>
-            <StyledPhotoContainer src={vectorMeetup} />
-          </StyledVectorContainer>
-        </StyledSubContainer>
+          </TextContainer>
+          <ImageContainer>
+            <Image src={vectorMeetup} />
+          </ImageContainer>
+        </SubContainer>
       </Container>
     </>
   )

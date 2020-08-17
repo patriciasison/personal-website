@@ -18,47 +18,47 @@ import {
 } from "../bits"
 import theme from "../bits/theme"
 import { ColorMode } from "../config"
+import { useMobileView } from "../hooks"
 
 const HomeColor = {
   [ColorMode.LIGHT]: {
-    firstNameColor: theme.color.white.norm,
-    lastNameColor: theme.color.white.norm,
-    lastNameOpacity: 85,
-    titleColor: theme.color.black.xlight,
-    taglineColor: theme.color.black.xxlight,
-    contactMeBgColor: `linear-gradient(90deg, ${theme.color.blue.dark}, ${theme.color.purple.norm})`,
-    contactMeFgColor: theme.color.white.norm,
+    firstName: theme.color.white.norm,
+    lastName: theme.color.white.norm,
+    title: theme.color.black.xlight,
+    tagline: theme.color.black.xxlight,
+    contactMeBg: `linear-gradient(90deg, ${theme.color.blue.dark}, ${theme.color.purple.norm})`,
+    contactMeFg: theme.color.white.norm,
   },
 }
 
-const cssSection = theme => `
-  background: url(${patternMobile}) bottom center no-repeat, linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light});
+const Section = styled.div`
+  background: url(${patternMobile}) bottom center no-repeat,
+    linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light});
   height: 380px;
   top: 0;
   width: 100%;
 
   @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
-    background: url(${patternTablet}) bottom center no-repeat, linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light});
+    background: url(${patternTablet}) bottom center no-repeat,
+      linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light});
     height: calc(51vh + 10px);
     min-height: 350px;
   }
 
   @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
-    background: url(${patternLaptop}) bottom center repeat, linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light});
+    background: url(${patternLaptop}) bottom center repeat,
+      linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light});
     min-height: 300px;
   }
 
   @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
-    background: url(${patternDesktop}) bottom center repeat, linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light});
+    background: url(${patternDesktop}) bottom center repeat,
+      linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light});
     min-height: 405px;
   }
 `
 
-const StyledSection = styled.div`
-  ${({ theme }) => cssSection(theme)}
-`
-
-const StyledMainContainer = styled.div`
+const MainContainer = styled.div`
   align-items: center;
   background: none;
   display: flex;
@@ -107,7 +107,7 @@ const StyledMainContainer = styled.div`
   }
 `
 
-const cssStyledTextContainer = theme => `
+const TextContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -120,25 +120,29 @@ const cssStyledTextContainer = theme => `
   }
 `
 
-const StyledTextContainer = styled.div`
-  ${({ theme }) => cssStyledTextContainer(theme)}
-`
-
-const cssPhotoContainer = theme => `
+const Image = styled.img`
   border-radius: 50%;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
   margin-bottom: ${theme.spacing.xxlarge};
 
+  @media screen and (max-width: ${theme.breakpoint.tablet.media}px) {
+    height: 130px;
+    width: 130px;
+  }
+
   @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+    height: 220px;
     margin-bottom: 0;
+    width: 220px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
+    height: 280px;
+    width: 280px;
   }
 `
 
-const StyledPhotoContainer = styled.img`
-  ${({ theme }) => cssPhotoContainer(theme)}
-`
-
-const StyledCtaContainer = styled.div`
+const CtaContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -166,65 +170,36 @@ const StyledCtaContainer = styled.div`
 
 const Home = ({ location }) => {
   const NAVBAR_Y_OFFSET = 50
-  const PhotoSize = {
-    DESKTOP: "280",
-    LAPTOP: "220",
-    TABLET: "220",
-    MOBILE: "130",
-  }
-
   const colorScheme = HomeColor[ColorMode.LIGHT]
 
-  const [isMobileView, setIsMobileView] = useState(false)
   const [navBgEnabled, setNavBgEnabled] = useState(false)
-  const [photoSize, setPhotoSize] = useState(PhotoSize.DESKTOP)
-
-  const handleScroll = () => {
-    if (window.pageYOffset > NAVBAR_Y_OFFSET) {
-      setNavBgEnabled(true)
-    } else {
-      setNavBgEnabled(false)
-    }
-  }
+  const isMobileView = useMobileView()
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= theme.breakpoint.desktop.media) {
-        setPhotoSize(PhotoSize.DESKTOP)
-        setIsMobileView(false)
-      } else if (window.innerWidth >= theme.breakpoint.laptop.media) {
-        setPhotoSize(PhotoSize.LAPTOP)
-        setIsMobileView(false)
-      } else if (window.innerWidth >= theme.breakpoint.tablet.media) {
-        setPhotoSize(PhotoSize.TABLET)
-        setIsMobileView(false)
+    const handleScroll = () => {
+      if (window.pageYOffset > NAVBAR_Y_OFFSET) {
+        setNavBgEnabled(true)
       } else {
-        setPhotoSize(PhotoSize.MOBILE)
-        setIsMobileView(true)
+        setNavBgEnabled(false)
       }
     }
 
-    handleResize()
-
     window.addEventListener("scroll", handleScroll)
-    window.addEventListener("resize", handleResize)
-
     return () => {
       window.removeEventListener("scroll", handleScroll)
-      window.removeEventListener("resize", handleResize)
     }
-  }, [PhotoSize.DESKTOP, PhotoSize.LAPTOP, PhotoSize.TABLET, PhotoSize.MOBILE])
+  }, [])
 
   return (
     <>
-      <StyledSection />
+      <Section />
       <Navbar pathname={location.pathname} backgroundEnabled={navBgEnabled} />
 
-      <StyledMainContainer>
+      <MainContainer>
         {isMobileView && (
-          <StyledCtaContainer>
+          <CtaContainer>
             <Text
-              color={colorScheme.taglineColor}
+              color={colorScheme.tagline}
               fontStyle={TextStyle.ITALIC}
               letterSpacing=".1rem"
               size={TextSize.MID}
@@ -233,16 +208,16 @@ const Home = ({ location }) => {
               Passionate. Adaptive. Organized.
             </Text>
             <Button
-              bgColor={colorScheme.contactMeBgColor}
-              fgColor={colorScheme.contactMeFgColor}
+              bgColor={colorScheme.contactMeBg}
+              fgColor={colorScheme.contactMeFg}
             >
               Contact Me
             </Button>
-          </StyledCtaContainer>
+          </CtaContainer>
         )}
-        <StyledTextContainer>
+        <TextContainer>
           <Heading
-            color={colorScheme.firstNameColor}
+            color={colorScheme.firstName}
             size={HeadingSize.XXLARGE}
             transform={HeadingTransform.UPPERCASE}
             weight={HeadingWeight.BLACK}
@@ -250,7 +225,7 @@ const Home = ({ location }) => {
             Patricia
           </Heading>
           <Heading
-            color={colorScheme.lastNameColor}
+            color={colorScheme.lastName}
             opacity={85}
             size={HeadingSize.XXLARGE}
             transform={HeadingTransform.UPPERCASE}
@@ -263,25 +238,21 @@ const Home = ({ location }) => {
             Sison
           </Heading>
           <Heading
-            color={colorScheme.titleColor}
+            color={colorScheme.title}
             letterSpacing=".3rem"
             size={HeadingSize.SMALL}
             transform={HeadingTransform.CAPITALIZE}
           >
             Software Engineer
           </Heading>
-        </StyledTextContainer>
-        <StyledPhotoContainer
-          src={photo}
-          width={photoSize}
-          height={photoSize}
-        />
-      </StyledMainContainer>
+        </TextContainer>
+        <Image src={photo} />
+      </MainContainer>
 
       {!isMobileView && (
-        <StyledCtaContainer>
+        <CtaContainer>
           <Text
-            color={colorScheme.taglineColor}
+            color={colorScheme.tagline}
             fontStyle={TextStyle.ITALIC}
             letterSpacing=".1rem"
             size={TextSize.MID}
@@ -290,12 +261,12 @@ const Home = ({ location }) => {
             Passionate. Adaptive. Organized.
           </Text>
           <Button
-            bgColor={colorScheme.contactMeBgColor}
-            fgColor={colorScheme.contactMeFgColor}
+            bgColor={colorScheme.contactMeBg}
+            fgColor={colorScheme.contactMeFg}
           >
             Contact Me
           </Button>
-        </StyledCtaContainer>
+        </CtaContainer>
       )}
     </>
   )
