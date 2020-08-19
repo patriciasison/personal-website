@@ -33,8 +33,8 @@ import { useMobileView } from "../hooks"
 
 const SkillsColor = {
   [ColorMode.LIGHT]: {
-    category: theme.color.black.xxlight,
-    cardBg: theme.color.white.norm,
+    category: theme.color.gray.norm,
+    card: theme.color.white.norm,
     skill: theme.color.black.light,
   },
 }
@@ -47,7 +47,7 @@ const cardSize = {
 
 const Card = styled.div`
   align-items: center;
-  background-color: ${({ cardBg }) => cardBg};
+  background-color: ${({ background }) => background};
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -180,8 +180,9 @@ const Skills = ({ location }) => {
         marginBottom={theme.spacing.xxxxlarge}
       >
         {categories.map(category => (
-          <>
+          <React.Fragment key={`category-${category.name}`}>
             <Text
+              key={category}
               color={colorScheme.category}
               letterSpacing=".15rem"
               size={isMobileView ? TextSize.LARGE : TextSize.SMALL}
@@ -194,11 +195,15 @@ const Skills = ({ location }) => {
 
             <SkillGroup>
               {category.skills.map(skill => (
-                <Card cardBg={colorScheme.cardBg}>
-                  <ImageContainer alignLogo={skill.alignLogo}>
-                    <Image src={skill.logo} />
+                <Card key={`card-${skill.name}`} background={colorScheme.card}>
+                  <ImageContainer
+                    key={`imgContainer-${skill.name}`}
+                    alignLogo={skill.alignLogo}
+                  >
+                    <Image key={`img-${skill.name}`} src={skill.logo} />
                   </ImageContainer>
                   <Text
+                    key={skill.name}
                     color={colorScheme.skill}
                     size={TextSize.XLARGE}
                     weight={TextWeight.MEDIUM}
@@ -208,7 +213,7 @@ const Skills = ({ location }) => {
                 </Card>
               ))}
             </SkillGroup>
-          </>
+          </React.Fragment>
         ))}
       </Container>
     </>

@@ -30,7 +30,10 @@ const theme = {
       norm: "#000000",
       light: "#212121",
       xlight: "#3D3D3D",
-      xxlight: "#575757",
+    },
+    gray: {
+      norm: "#575757",
+      light: "#A3A3A3",
     },
     blue: {
       xdark: "#006D96",

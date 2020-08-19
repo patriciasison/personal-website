@@ -2,12 +2,12 @@ import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
-const cssButton = ({ theme, bgColor, fgColor }) => `
-  background: ${bgColor};
+const cssButton = ({ theme, background, foreground }) => `
+  background: ${background};
   border: 0;
   border-radius: 30px;
   box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.2);
-  color: ${fgColor};
+  color: ${foreground};
   cursor: pointer;
   font-family: inherit;
   font-size: ${theme.size.xxsmall};
@@ -25,16 +25,25 @@ const StyledButton = styled.button`
   ${props => cssButton(props)}
 `
 
-const Button = ({ children, bgColor, fgColor }) => (
-  <StyledButton bgColor={bgColor} fgColor={fgColor}>
+const Button = ({ children, background, foreground, onClick }) => (
+  <StyledButton
+    background={background}
+    foreground={foreground}
+    onClick={onClick}
+  >
     {children}
   </StyledButton>
 )
 
+Button.defaultProps = {
+  onClick: () => {},
+}
+
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  bgColor: PropTypes.string.isRequired,
-  fgColor: PropTypes.string.isRequired,
+  background: PropTypes.string.isRequired,
+  foreground: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
 }
 
 export default Button

@@ -24,8 +24,8 @@ const HomeColor = {
   [ColorMode.LIGHT]: {
     firstName: theme.color.white.norm,
     lastName: theme.color.white.norm,
-    title: theme.color.black.xlight,
-    tagline: theme.color.black.xxlight,
+    position: theme.color.black.xlight,
+    tagline: theme.color.gray.norm,
     contactMeBg: `linear-gradient(90deg, ${theme.color.blue.dark}, ${theme.color.purple.norm})`,
     contactMeFg: theme.color.white.norm,
   },
@@ -208,8 +208,8 @@ const Home = ({ location }) => {
               Passionate. Adaptive. Organized.
             </Text>
             <Button
-              bgColor={colorScheme.contactMeBg}
-              fgColor={colorScheme.contactMeFg}
+              background={colorScheme.contactMeBg}
+              foreground={colorScheme.contactMeFg}
             >
               Contact Me
             </Button>
@@ -238,7 +238,7 @@ const Home = ({ location }) => {
             Sison
           </Heading>
           <Heading
-            color={colorScheme.title}
+            color={colorScheme.position}
             letterSpacing=".3rem"
             size={HeadingSize.SMALL}
             transform={HeadingTransform.CAPITALIZE}
@@ -261,8 +261,8 @@ const Home = ({ location }) => {
             Passionate. Adaptive. Organized.
           </Text>
           <Button
-            bgColor={colorScheme.contactMeBg}
-            fgColor={colorScheme.contactMeFg}
+            background={colorScheme.contactMeBg}
+            foreground={colorScheme.contactMeFg}
           >
             Contact Me
           </Button>
