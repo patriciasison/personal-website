@@ -1,4 +1,5 @@
 import React from "react"
+import styled from "styled-components"
 import logoGmail from "../assets/logo-gmail.png"
 import logoGithub from "../assets/logo-github.png"
 import logoLinkedIn from "../assets/logo-linkedin.png"
@@ -7,20 +8,19 @@ import pattern from "../assets/pattern1.png"
 import patternMobile from "../assets/pattern1-mobile.png"
 import patternTablet from "../assets/pattern1-tablet.png"
 import {
+  Card,
   Container,
   ContainerAlign,
   Heading,
   HeadingSize,
-  Navbar,
   HeadingWeight,
+  Navbar,
   Text,
   TextSize,
   TextWeight,
-  Card,
 } from "../bits"
 import theme from "../bits/theme"
 import { ColorMode } from "../config"
-import styled from "styled-components"
 import { useViewport, Viewport } from "../hooks"
 
 const ContactColor = {

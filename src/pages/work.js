@@ -89,8 +89,8 @@ const NavigationSection = styled.div`
 `
 
 const Navigation = styled.div`
-  cursor: pointer;
   color: ${({ color }) => color};
+  cursor: pointer;
   font-size: ${theme.size.mid};
 
   &:not(:last-child) {

@@ -9,7 +9,6 @@ const cssCard = ({
   size,
   marginBottom,
   marginRight,
-  onClick,
 }) => `
   align-items: center;
   background-color: ${background};
