@@ -19,6 +19,7 @@ import logoReact from "../assets/logo-react.png"
 import logoSass from "../assets/logo-sass.png"
 import logoTypescript from "../assets/logo-typescript.png"
 import {
+  Card,
   Container,
   Navbar,
   Text,
@@ -29,7 +30,7 @@ import {
 } from "../bits"
 import theme from "../bits/theme"
 import { ColorMode } from "../config"
-import { useMobileView } from "../hooks"
+import { useViewport, Viewport } from "../hooks"
 
 const SkillsColor = {
   [ColorMode.LIGHT]: {
@@ -45,49 +46,17 @@ const cardSize = {
   laptop: 120,
 }
 
-const Card = styled.div`
-  align-items: center;
-  background-color: ${({ background }) => background};
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: ${theme.spacing.xlarge};
-
-  @media screen and (max-width: ${theme.breakpoint.tablet.media}px) {
-    height: ${cardSize.mobile}px;
-    margin-bottom: ${theme.spacing.large};
-    width: ${cardSize.mobile}px;
-
-    &:nth-child(odd) {
-      margin-right: ${theme.spacing.large};
-    }
-  }
-
-  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
-    height: ${cardSize.tablet}px;
-    width: ${cardSize.tablet}px;
-
-    &:not(:last-child) {
-      margin-right: ${theme.spacing.xlarge};
-    }
-  }
-
-  @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
-    height: ${cardSize.laptop}px;
-    width: ${cardSize.laptop}px;
-  }
-`
-
 const SkillGroup = styled.div`
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 
   &:not(:last-child) {
     margin-bottom: ${theme.spacing.xxlarge};
   }
 
-  @media screen and (max-width: ${theme.breakpoint.tablet.media}px) {
-    justify-content: center;
+  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+    justify-content: flex-start;
   }
 `
 
@@ -123,7 +92,7 @@ const Image = styled.img`
 
 const Skills = ({ location }) => {
   const colorScheme = SkillsColor[ColorMode.LIGHT]
-  const isMobileView = useMobileView()
+  const viewport = useViewport()
 
   const categories = [
     {
@@ -175,7 +144,11 @@ const Skills = ({ location }) => {
     <>
       <Navbar pathname={location.pathname} />
       <Container
-        align={isMobileView ? ContainerAlign.CENTER : ContainerAlign.START}
+        align={
+          viewport === Viewport.MOBILE
+            ? ContainerAlign.CENTER
+            : ContainerAlign.START
+        }
         marginTop={theme.spacing.xxlarge}
         marginBottom={theme.spacing.xxxxlarge}
       >
@@ -185,7 +158,9 @@ const Skills = ({ location }) => {
               key={category}
               color={colorScheme.category}
               letterSpacing=".15rem"
-              size={isMobileView ? TextSize.LARGE : TextSize.SMALL}
+              size={
+                viewport === Viewport.MOBILE ? TextSize.LARGE : TextSize.SMALL
+              }
               transform={TextTransform.UPPERCASE}
               weight={TextWeight.MEDIUM}
               marginBottom={theme.spacing.small}
@@ -194,8 +169,29 @@ const Skills = ({ location }) => {
             </Text>
 
             <SkillGroup>
-              {category.skills.map(skill => (
-                <Card key={`card-${skill.name}`} background={colorScheme.card}>
+              {category.skills.map((skill, index) => (
+                <Card
+                  key={`card-${skill.name}`}
+                  background={colorScheme.card}
+                  padding={theme.spacing.xlarge}
+                  size={
+                    viewport === Viewport.MOBILE
+                      ? cardSize.mobile
+                      : viewport === Viewport.TABLET
+                      ? cardSize.tablet
+                      : cardSize.laptop
+                  }
+                  marginBottom={
+                    viewport === Viewport.MOBILE ? theme.spacing.large : "0"
+                  }
+                  marginRight={
+                    viewport === Viewport.MOBILE && index % 2 === 1
+                      ? theme.spacing.large
+                      : index + 1 < category.skills.length
+                      ? theme.spacing.xlarge
+                      : "0"
+                  }
+                >
                   <ImageContainer
                     key={`imgContainer-${skill.name}`}
                     alignLogo={skill.alignLogo}

@@ -1,1 +1,1 @@
-export { default as useMobileView } from "./use-mobile-view"
+export { default as useViewport, Viewport } from "./use-viewport"

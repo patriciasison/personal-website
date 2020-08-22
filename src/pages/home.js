@@ -17,11 +17,12 @@ import {
   TextStyle,
 } from "../bits"
 import theme from "../bits/theme"
-import { ColorMode } from "../config"
-import { useMobileView } from "../hooks"
+import { ColorMode, SiteRoute } from "../config"
+import { useViewport, Viewport } from "../hooks"
 
 const HomeColor = {
   [ColorMode.LIGHT]: {
+    patternBg: `linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light})`,
     firstName: theme.color.white.norm,
     lastName: theme.color.white.norm,
     position: theme.color.black.xlight,
@@ -31,29 +32,29 @@ const HomeColor = {
   },
 }
 
-const Section = styled.div`
+const PatternContainer = styled.div`
   background: url(${patternMobile}) bottom center no-repeat,
-    linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light});
+    ${({ background }) => background};
   height: 380px;
   top: 0;
   width: 100%;
 
   @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
     background: url(${patternTablet}) bottom center no-repeat,
-      linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light});
+      ${({ background }) => background};
     height: calc(51vh + 10px);
     min-height: 350px;
   }
 
   @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
     background: url(${patternLaptop}) bottom center repeat,
-      linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light});
+      ${({ background }) => background};
     min-height: 300px;
   }
 
   @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
     background: url(${patternDesktop}) bottom center repeat,
-      linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light});
+      ${({ background }) => background};
     min-height: 405px;
   }
 `
@@ -173,7 +174,7 @@ const Home = ({ location }) => {
   const colorScheme = HomeColor[ColorMode.LIGHT]
 
   const [navBgEnabled, setNavBgEnabled] = useState(false)
-  const isMobileView = useMobileView()
+  const isMobileView = useViewport() === Viewport.MOBILE
 
   useEffect(() => {
     const handleScroll = () => {
@@ -192,7 +193,7 @@ const Home = ({ location }) => {
 
   return (
     <>
-      <Section />
+      <PatternContainer background={colorScheme.patternBg} />
       <Navbar pathname={location.pathname} backgroundEnabled={navBgEnabled} />
 
       <MainContainer>
@@ -263,6 +264,9 @@ const Home = ({ location }) => {
           <Button
             background={colorScheme.contactMeBg}
             foreground={colorScheme.contactMeFg}
+            onClick={() => {
+              window.open(SiteRoute.CONTACT, "_self")
+            }}
           >
             Contact Me
           </Button>

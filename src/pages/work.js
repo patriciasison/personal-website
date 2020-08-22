@@ -15,7 +15,7 @@ import {
 } from "../bits"
 import theme from "../bits/theme"
 import { ColorMode } from "../config"
-import { useMobileView } from "../hooks"
+import { useViewport, Viewport } from "../hooks"
 
 const WorkColor = {
   [ColorMode.LIGHT]: {
@@ -23,7 +23,7 @@ const WorkColor = {
     selectedCompany: theme.color.blue.xdark,
     position: theme.color.black.xlight,
     duration: theme.color.gray.norm,
-    navigate: theme.color.black.xlight,
+    navigate: theme.color.blue.norm,
     timeline: theme.color.blue.xdark,
     titleBar: theme.color.white.xdark,
     circle1: theme.color.red.norm,
@@ -289,7 +289,7 @@ const Work = ({ location }) => {
     setSelectedCompany(companies[newCompanyIndex % companies.length])
   }
 
-  const isMobileView = useMobileView()
+  const isMobileView = useViewport() === Viewport.MOBILE
 
   return (
     <>
