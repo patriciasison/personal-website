@@ -17,10 +17,6 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
-  head {
-    visibility: hidden;
-  }
-
   body {
     background-color: ${theme.color.white.dark};
     font-family: "Roboto";

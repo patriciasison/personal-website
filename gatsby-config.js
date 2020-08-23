@@ -6,5 +6,8 @@
 
 module.exports = {
   /* Your site config here */
-  plugins: [`gatsby-plugin-force-trailing-slashes`],
+  plugins: [
+    `gatsby-plugin-force-trailing-slashes`,
+    `gatsby-plugin-styled-components`,
+  ],
 }
