@@ -17,9 +17,12 @@
     "babel-plugin-styled-components": "^1.11.1",
     "gatsby": "^2.23.12",
     "gatsby-plugin-styled-components": "^3.3.10",
+    "gatsby-plugin-typography": "^2.5.10",
     "react": "^16.12.0",
     "react-dom": "^16.13.1",
-    "styled-components": "^5.1.1"
+    "react-typography": "^0.16.19",
+    "styled-components": "^5.1.1",
+    "typography": "^0.16.19"
   },
   "devDependencies": {
     "gatsby-plugin-force-trailing-slashes": "^1.0.4",
