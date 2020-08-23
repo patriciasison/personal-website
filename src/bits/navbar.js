@@ -120,7 +120,7 @@ const Navbar = ({ navItems, pathname, backgroundEnabled, colorMode }) => {
   const [showIcons, setShowIcons] = useState(false)
 
   const formatPathnameToTitle = string => {
-    const title = string.replaceAll("/", "").replaceAll("-", " ")
+    const title = string.replace(/\//g, "").replace(/-/g, " ")
     return title[0].toUpperCase() + title.substring(1)
   }
 

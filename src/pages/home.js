@@ -221,6 +221,9 @@ const Home = ({ location }) => {
             <Button
               background={colorScheme.contactMeBg}
               foreground={colorScheme.contactMeFg}
+              onClick={() => {
+                window.open(SiteRoute.CONTACT, "_self")
+              }}
             >
               Contact Me
             </Button>
