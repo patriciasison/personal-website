@@ -115,9 +115,10 @@ const StyledNavItem = styled(Link)`
 
 const Navbar = ({ navItems, pathname, backgroundEnabled, colorMode }) => {
   const colorScheme = NavbarColor[colorMode]
-  const activeNavItemId =
-    pathname === "/" ? SiteRoute.HOME : pathname
-  const [showIcons, setShowIcons] = useState(false)
+  const activeNavItemId = pathname === "/" ? SiteRoute.HOME : pathname
+  const [showIcons, setShowIcons] = useState(
+    window.innerWidth < theme.breakpoint.tablet.media
+  )
 
   useEffect(() => {
     const handleResize = () => {
