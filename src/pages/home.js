@@ -191,7 +191,9 @@ const Home = ({ location }) => {
     }
   }, [])
 
-  if (initialLoad) {
+  if (initialLoad && isMobileView) {
+    return <></>
+  } else if (initialLoad) {
     return (
       <>
         <Navbar pathname={location.pathname} />

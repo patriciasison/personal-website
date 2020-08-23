@@ -309,7 +309,9 @@ const Work = ({ location }) => {
   const [viewport, initialLoad] = useViewport()
   const isMobileView = viewport === Viewport.MOBILE
 
-  if (initialLoad) {
+  if (initialLoad && isMobileView) {
+    return <></>
+  } else if (initialLoad) {
     return (
       <>
         <Navbar pathname={location.pathname} />

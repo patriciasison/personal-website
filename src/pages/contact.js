@@ -256,7 +256,9 @@ const Contact = ({ location }) => {
     },
   ]
 
-  if (initialLoad) {
+  if (initialLoad && viewport === Viewport.MOBILE) {
+    return <></>
+  } else if (initialLoad) {
     return (
       <>
         <Navbar pathname={location.pathname} />
