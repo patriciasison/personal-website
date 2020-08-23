@@ -16,7 +16,7 @@ import {
 } from "../bits"
 import theme from "../bits/theme"
 import { ColorMode } from "../config"
-import { useViewport, Viewport } from "../hooks"
+import { useViewport } from "../hooks"
 
 const AboutMeColor = {
   [ColorMode.LIGHT]: {
@@ -141,12 +141,9 @@ const TextContainer = styled.div`
 
 const AboutMe = ({ location }) => {
   const colorScheme = AboutMeColor[ColorMode.LIGHT]
-  const [viewport, initialLoad] = useViewport()
-  const isMobileView = viewport === Viewport.MOBILE
+  const [, initialLoad] = useViewport()
 
-  if (initialLoad && isMobileView) {
-    return <></>
-  } else if (initialLoad) {
+  if (initialLoad) {
     return (
       <>
         <Navbar pathname={location.pathname} />

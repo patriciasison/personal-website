@@ -47,7 +47,6 @@ const StyledNavbar = styled.div`
 const cssContainer = theme => `
   display: flex;
   justify-content: center;
-  padding-top: ${theme.spacing.large};
   width: ${theme.breakpoint.mobile.width}px;
 
   @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
@@ -74,8 +73,10 @@ const cssNavItem = ({ theme, active, color, highlight }) => `
   box-sizing: border-box;
   color: ${color};
   display: flex;
-  font-size: ${theme.size.large};
-  padding: 0 ${theme.spacing.mid} ${theme.spacing.mid} ${theme.spacing.mid};
+  font-size: ${theme.size.xlarge};
+  padding: ${theme.spacing.large} ${theme.spacing.mid} ${theme.spacing.mid} ${
+  theme.spacing.mid
+};
   text-decoration: none;
   text-transform: uppercase;
 
@@ -86,7 +87,7 @@ const cssNavItem = ({ theme, active, color, highlight }) => `
   ${active === "true" && `border-bottom: 3px solid ${highlight}`};
   
   @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
-    font-size: ${theme.size.xxsmall};
+    font-size: ${theme.size.xsmall};
 
     ${
       active === "true"
@@ -106,7 +107,11 @@ const cssNavItem = ({ theme, active, color, highlight }) => `
   }
 
   @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
-    font-size: ${theme.size.xxxsmall};
+    font-size: ${theme.size.xxsmall};
+
+    &:not(:last-child) {
+      margin-right: ${theme.spacing.xlarge};
+    }
   }
 `
 
