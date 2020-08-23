@@ -17,6 +17,10 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  @font-face {
+    font-display: block;
+  }
+
   body {
     background-color: ${theme.color.white.dark};
     font-family: "Roboto";
