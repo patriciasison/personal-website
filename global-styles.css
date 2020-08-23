@@ -1,0 +1,14 @@
+html {
+  font-size: 8px;
+
+  /* theme.breakpoint.desktop.media */
+  @media screen and (min-width: 1280px) {
+    font-size: 10px;
+  }
+}
+
+body {
+  background-color: "#F6F6F6"; /* theme.color.white.dark */
+  font-family: "Roboto";
+  margin: 0;
+}
