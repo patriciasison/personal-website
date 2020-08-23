@@ -140,7 +140,7 @@ const Navbar = ({ navItems, pathname, backgroundEnabled, colorMode }) => {
     <>
       <Helmet>
         <title>
-          {SITE_NAME} | {formatPathnameToTitle(pathname)}
+          {SITE_NAME} | {formatPathnameToTitle(activeNavItemId)}
         </title>
       </Helmet>
 
