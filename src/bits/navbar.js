@@ -115,8 +115,9 @@ const StyledNavItem = styled(Link)`
 
 const Navbar = ({ navItems, pathname, backgroundEnabled, colorMode }) => {
   const colorScheme = NavbarColor[colorMode]
-  const activeNavItemId = pathname === "/" ? SiteRoute.HOME : pathname
-  const [showIcons, setShowIcons] = useState(undefined)
+  const activeNavItemId =
+    pathname === "/" ? SiteRoute.HOME : pathname
+  const [showIcons, setShowIcons] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
@@ -144,9 +145,7 @@ const Navbar = ({ navItems, pathname, backgroundEnabled, colorMode }) => {
             color={colorScheme.navItemColor}
             highlight={colorScheme.navItemHighlight}
           >
-            {showIcons === undefined
-              ? ""
-              : showIcons
+            {showIcons
               ? activeNavItemId === navItem.id
                 ? navItem.primaryIcon
                 : navItem.secondaryIcon
