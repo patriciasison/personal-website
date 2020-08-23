@@ -9,19 +9,5 @@ module.exports = {
   plugins: [
     `gatsby-plugin-force-trailing-slashes`,
     `gatsby-plugin-styled-components`,
-    {
-      resolve: `gatsby-plugin-webfonts`,
-      options: {
-        fonts: {
-          google: [
-            {
-              family: "Roboto",
-              variants: ["400", "500", "700", "900"],
-              fontDisplay: "block",
-            },
-          ],
-        },
-      },
-    },
   ],
 }
