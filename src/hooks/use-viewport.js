@@ -2,7 +2,15 @@ import { useState, useEffect } from "react"
 import theme from "../bits/theme"
 
 const useViewport = () => {
-  const [viewport, setViewport] = useState(Viewport.MOBILE)
+  const initialViewport =
+    window.innerWidth >= theme.breakpoint.desktop.media
+      ? Viewport.DESKTOP
+      : window.innerWidth >= theme.breakpoint.laptop.media
+      ? Viewport.LAPTOP
+      : window.innerWidth >= theme.breakpoint.tablet.media
+      ? Viewport.TABLET
+      : Viewport.MOBILE
+  const [viewport, setViewport] = useState(initialViewport)
 
   useEffect(() => {
     const handleResize = () => {

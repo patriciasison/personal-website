@@ -16,6 +16,10 @@ const GlobalStyle = createGlobalStyle`
       font-size: 10px;
     }
   }
+
+  head {
+    visibility: hidden;
+  }
   
   body {
     background-color: ${theme.color.white.dark};
