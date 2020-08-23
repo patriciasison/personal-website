@@ -2,15 +2,8 @@ import { useState, useEffect } from "react"
 import theme from "../bits/theme"
 
 const useViewport = () => {
-  const initialViewport =
-    window.innerWidth >= theme.breakpoint.desktop.media
-      ? Viewport.DESKTOP
-      : window.innerWidth >= theme.breakpoint.laptop.media
-      ? Viewport.LAPTOP
-      : window.innerWidth >= theme.breakpoint.tablet.media
-      ? Viewport.TABLET
-      : Viewport.MOBILE
-  const [viewport, setViewport] = useState(initialViewport)
+  const [viewport, setViewport] = useState(Viewport.MOBILE)
+  const [initialLoad, setInitialLoad] = useState(true)
 
   useEffect(() => {
     const handleResize = () => {
@@ -24,15 +17,21 @@ const useViewport = () => {
         setViewport(Viewport.MOBILE)
       }
     }
-    handleResize()
 
+    handleResize()
     window.addEventListener("resize", handleResize)
+
+    const timer = setTimeout(() => {
+      setInitialLoad(false)
+    }, 100)
+
     return () => {
       window.removeEventListener("resize", handleResize)
+      clearTimeout(timer)
     }
   }, [])
 
-  return viewport
+  return [viewport, initialLoad]
 }
 
 export const Viewport = {

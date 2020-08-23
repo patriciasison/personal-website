@@ -306,7 +306,16 @@ const Work = ({ location }) => {
     setSelectedCompany(companies[newCompanyIndex % companies.length])
   }
 
-  const isMobileView = useViewport() === Viewport.MOBILE
+  const [viewport, initialLoad] = useViewport()
+  const isMobileView = viewport === Viewport.MOBILE
+
+  if (initialLoad) {
+    return (
+      <>
+        <Navbar pathname={location.pathname} />
+      </>
+    )
+  }
 
   return (
     <>

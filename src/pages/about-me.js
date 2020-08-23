@@ -16,6 +16,7 @@ import {
 } from "../bits"
 import theme from "../bits/theme"
 import { ColorMode } from "../config"
+import { useViewport } from "../hooks"
 
 const AboutMeColor = {
   [ColorMode.LIGHT]: {
@@ -140,6 +141,15 @@ const TextContainer = styled.div`
 
 const AboutMe = ({ location }) => {
   const colorScheme = AboutMeColor[ColorMode.LIGHT]
+  const [, initialLoad] = useViewport()
+
+  if (initialLoad) {
+    return (
+      <>
+        <Navbar pathname={location.pathname} />
+      </>
+    )
+  }
 
   return (
     <>

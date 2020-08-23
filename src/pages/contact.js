@@ -155,7 +155,7 @@ const TextContainer = styled.div`
 const Contact = ({ location }) => {
   const colorScheme = ContactColor[ColorMode.LIGHT]
 
-  const viewport = useViewport()
+  const [viewport, initialLoad] = useViewport()
 
   const contactDetails = [
     {
@@ -255,6 +255,14 @@ const Contact = ({ location }) => {
       handleClick: () => {},
     },
   ]
+
+  if (initialLoad) {
+    return (
+      <>
+        <Navbar pathname={location.pathname} />
+      </>
+    )
+  }
 
   return (
     <>

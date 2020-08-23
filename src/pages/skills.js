@@ -93,7 +93,7 @@ const Image = styled.img`
 
 const Skills = ({ location }) => {
   const colorScheme = SkillsColor[ColorMode.LIGHT]
-  const viewport = useViewport()
+  const [viewport, initialLoad] = useViewport()
 
   const categories = [
     {
@@ -140,6 +140,14 @@ const Skills = ({ location }) => {
       ],
     },
   ]
+
+  if (initialLoad) {
+    return (
+      <>
+        <Navbar pathname={location.pathname} />
+      </>
+    )
+  }
 
   return (
     <>

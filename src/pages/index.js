@@ -178,7 +178,8 @@ const Home = ({ location }) => {
   const colorScheme = HomeColor[ColorMode.LIGHT]
 
   const [navBgEnabled, setNavBgEnabled] = useState(false)
-  const isMobileView = useViewport() === Viewport.MOBILE
+  const [viewport, initialLoad] = useViewport()
+  const isMobileView = viewport === Viewport.MOBILE
 
   useEffect(() => {
     const handleScroll = () => {
@@ -194,6 +195,14 @@ const Home = ({ location }) => {
       window.removeEventListener("scroll", handleScroll)
     }
   }, [])
+
+  if (initialLoad) {
+    return (
+      <>
+        <Navbar pathname={location.pathname} />
+      </>
+    )
+  }
 
   return (
     <>
