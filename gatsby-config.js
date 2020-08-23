@@ -9,5 +9,12 @@ module.exports = {
   plugins: [
     `gatsby-plugin-force-trailing-slashes`,
     `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [`roboto\:400,500,700,900`],
+        display: "block",
+      },
+    },
   ],
 }
