@@ -5,7 +5,11 @@
  */
 
 module.exports = {
-  /* Your site config here */
+  siteMetadata: {
+    title: `Patricia Sison`,
+    siteUrl: `https://patriciasison.me`,
+    description: `Patricia Sison's personal website`,
+  },
   plugins: [
     `gatsby-plugin-force-trailing-slashes`,
     `gatsby-plugin-styled-components`,

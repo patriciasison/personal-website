@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+import Helmet from "react-helmet"
 import EmailIcon from "@material-ui/icons/Email"
 import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined"
 import HomeIcon from "@material-ui/icons/Home"
@@ -13,7 +14,7 @@ import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import theme from "./theme"
-import { ColorMode, SiteRoute } from "../config"
+import { ColorMode, SiteRoute, SITE_NAME } from "../config"
 
 const NavbarColor = {
   [ColorMode.LIGHT]: {
@@ -115,9 +116,13 @@ const StyledNavItem = styled(Link)`
 
 const Navbar = ({ navItems, pathname, backgroundEnabled, colorMode }) => {
   const colorScheme = NavbarColor[colorMode]
-  const activeNavItemId =
-    pathname === "/" ? SiteRoute.HOME : pathname
+  const activeNavItemId = pathname === "/" ? SiteRoute.HOME : pathname
   const [showIcons, setShowIcons] = useState(false)
+
+  const formatPathnameToTitle = string => {
+    const title = string.replaceAll("/", "").replaceAll("-", " ")
+    return title[0].toUpperCase() + title.substring(1)
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -132,28 +137,36 @@ const Navbar = ({ navItems, pathname, backgroundEnabled, colorMode }) => {
   }, [])
 
   return (
-    <StyledNavbar
-      background={colorScheme.navbarBackground}
-      backgroundEnabled={backgroundEnabled}
-    >
-      <StyledContainer>
-        {navItems.map(navItem => (
-          <StyledNavItem
-            key={navItem.id}
-            to={navItem.id}
-            active={(activeNavItemId === navItem.id) + ""}
-            color={colorScheme.navItemColor}
-            highlight={colorScheme.navItemHighlight}
-          >
-            {showIcons
-              ? activeNavItemId === navItem.id
-                ? navItem.primaryIcon
-                : navItem.secondaryIcon
-              : navItem.name}
-          </StyledNavItem>
-        ))}
-      </StyledContainer>
-    </StyledNavbar>
+    <>
+      <Helmet>
+        <title>
+          {SITE_NAME} | {formatPathnameToTitle(pathname)}
+        </title>
+      </Helmet>
+
+      <StyledNavbar
+        background={colorScheme.navbarBackground}
+        backgroundEnabled={backgroundEnabled}
+      >
+        <StyledContainer>
+          {navItems.map(navItem => (
+            <StyledNavItem
+              key={navItem.id}
+              to={navItem.id}
+              active={(activeNavItemId === navItem.id) + ""}
+              color={colorScheme.navItemColor}
+              highlight={colorScheme.navItemHighlight}
+            >
+              {showIcons
+                ? activeNavItemId === navItem.id
+                  ? navItem.primaryIcon
+                  : navItem.secondaryIcon
+                : navItem.name}
+            </StyledNavItem>
+          ))}
+        </StyledContainer>
+      </StyledNavbar>
+    </>
   )
 }
 

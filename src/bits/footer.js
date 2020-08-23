@@ -5,9 +5,9 @@ import MailIcon from "@material-ui/icons/Mail"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 import theme from "./theme"
-import { ColorMode, SiteRoute } from "../config"
-import Text, { TextSize } from "./text"
 import IconButton from "./icon-button"
+import Text, { TextSize, TextWeight } from "./text"
+import { ColorMode, SiteRoute } from "../config"
 
 const FooterColor = {
   [ColorMode.LIGHT]: {
@@ -87,16 +87,16 @@ const Footer = ({ colorMode }) => {
         <StyledFooterText>
           <Text
             color={colorScheme.footerText}
-            letterSpacing=".05rem"
             size={TextSize.SMALL}
+            weight={TextWeight.LIGHT}
             marginBottom={theme.spacing.xxsmall}
           >
             Website designed and developed by me.
           </Text>
           <Text
             color={colorScheme.footerText}
-            letterSpacing=".05rem"
             size={TextSize.SMALL}
+            weight={TextWeight.LIGHT}
           >
             Vectors created by{" "}
             <StyledLink
