@@ -23,7 +23,7 @@ const NavbarColor = {
   },
 }
 
-const cssNavbar = ({ background, backgroundEnabled }) => `
+const cssNavbar = ({ theme, background, backgroundEnabled }) => `
   background: ${background};
   display: flex;
   justify-content: center;
@@ -113,10 +113,10 @@ const StyledNavItem = styled(Link)`
   ${props => cssNavItem(props)}
 `
 
-const Navbar = ({ navItems, pathname, backgroundEnabled }) => {
-  const colorScheme = NavbarColor[ColorMode.LIGHT]
+const Navbar = ({ navItems, pathname, backgroundEnabled, colorMode }) => {
+  const colorScheme = NavbarColor[colorMode]
   const activeNavItemId =
-    pathname === "/" ? SiteRoute.HOME : pathname.replace(/\/$/, "")
+    pathname === "/" ? SiteRoute.HOME : pathname
   const [showIcons, setShowIcons] = useState(false)
 
   useEffect(() => {
@@ -202,12 +202,14 @@ Navbar.defaultProps = {
     },
   ],
   backgroundEnabled: true,
+  colorMode: ColorMode.LIGHT,
 }
 
 Navbar.propTypes = {
   navItems: PropTypes.arrayOf(PropTypes.shape(navItemShape)).isRequired,
   pathname: PropTypes.string.isRequired,
   backgroundEnabled: PropTypes.bool,
+  colorMode: PropTypes.oneOf(Object.values(ColorMode)),
 }
 
 export default Navbar

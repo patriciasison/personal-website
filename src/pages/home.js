@@ -26,7 +26,7 @@ const HomeColor = {
     firstName: theme.color.white.norm,
     lastName: theme.color.white.norm,
     position: theme.color.black.xlight,
-    tagline: theme.color.gray.norm,
+    tagline: theme.color.gray.dark,
     contactMeBg: `linear-gradient(90deg, ${theme.color.blue.dark}, ${theme.color.purple.norm})`,
     contactMeFg: theme.color.white.norm,
   },
@@ -40,20 +40,20 @@ const PatternContainer = styled.div`
   width: 100%;
 
   @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
-    background: url(${patternTablet}) bottom center no-repeat,
+    background: url(${patternTablet}) bottom center repeat-x,
       ${({ background }) => background};
     height: calc(51vh + 10px);
     min-height: 350px;
   }
 
   @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
-    background: url(${patternLaptop}) bottom center repeat,
+    background: url(${patternLaptop}) bottom center repeat-x,
       ${({ background }) => background};
     min-height: 300px;
   }
 
   @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
-    background: url(${patternDesktop}) bottom center repeat,
+    background: url(${patternDesktop}) bottom center repeat-x,
       ${({ background }) => background};
     min-height: 405px;
   }
@@ -164,7 +164,6 @@ const CtaContainer = styled.div`
   }
 
   @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
-    height: 65vh;
     min-height: 650px;
   }
 `

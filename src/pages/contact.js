@@ -11,6 +11,7 @@ import {
   Card,
   Container,
   ContainerAlign,
+  Footer,
   Heading,
   HeadingSize,
   HeadingWeight,
@@ -26,7 +27,6 @@ import { useViewport, Viewport } from "../hooks"
 const ContactColor = {
   [ColorMode.LIGHT]: {
     heading: theme.color.black.xlight,
-    subheading: theme.color.black.xlight,
     card: theme.color.white.norm,
     contactDetail: theme.color.black.light,
   },
@@ -38,9 +38,11 @@ const cardSize = {
   laptop: 130,
 }
 
-const PatternContainer = styled.div`
-  background: url(${patternMobile}) bottom center no-repeat;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   height: 100%;
+  justify-content: flex-end;
   left: 0;
   position: absolute;
   top: 0;
@@ -48,12 +50,35 @@ const PatternContainer = styled.div`
   z-index: -1;
 
   @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
-    background: url(${patternTablet}) bottom center no-repeat;
+    min-height: ${theme.breakpoint.tablet.height}px;
   }
 
   @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
-    min-height: ${theme.breakpoint.laptop.height}px;
+    min-height: calc(
+      ${theme.breakpoint.laptop.height}px + 3 * ${theme.spacing.xxxxlarge}
+    );
+  }
+
+  @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
+    min-height: calc(
+      ${theme.breakpoint.laptop.height}px + 4 * ${theme.spacing.xxxxlarge} +
+        ${theme.spacing.large}
+    );
+  }
+`
+
+const PatternContainer = styled.div`
+  background: url(${patternMobile}) bottom center no-repeat;
+  height: 150px;
+
+  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+    background: url(${patternTablet}) bottom left no-repeat;
+    height: 200px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
     background: url(${pattern}) bottom center no-repeat;
+    height: 290px;
   }
 `
 
@@ -233,7 +258,6 @@ const Contact = ({ location }) => {
 
   return (
     <>
-      <PatternContainer />
       <Navbar pathname={location.pathname} />
       <Container
         align={ContainerAlign.CENTER}
@@ -267,12 +291,23 @@ const Contact = ({ location }) => {
                 >
                   full-stack web development
                 </Heading>
+                ? Want a{" "}
+                <Heading
+                  color={colorScheme.heading}
+                  weight={HeadingWeight.BOLD}
+                >
+                  simple website design
+                </Heading>
                 ?
               </Heading>
             </>
           ) : (
             <>
-              <Heading color={colorScheme.heading} size={HeadingSize.MID}>
+              <Heading
+                color={colorScheme.heading}
+                size={HeadingSize.MID}
+                marginBottom={theme.spacing.xxsmall}
+              >
                 Looking for a{" "}
                 <Heading
                   color={colorScheme.heading}
@@ -285,7 +320,7 @@ const Contact = ({ location }) => {
               <Heading
                 color={colorScheme.heading}
                 size={HeadingSize.MID}
-                marginBottom={theme.spacing.xxlarge}
+                marginBottom={theme.spacing.xxsmall}
               >
                 working together in{" "}
                 <Heading
@@ -296,16 +331,22 @@ const Contact = ({ location }) => {
                 </Heading>
                 ?
               </Heading>
+              <Heading
+                color={colorScheme.heading}
+                size={HeadingSize.MID}
+                marginBottom={theme.spacing.xxxlarge}
+              >
+                Want a{" "}
+                <Heading
+                  color={colorScheme.heading}
+                  weight={HeadingWeight.BOLD}
+                >
+                  design
+                </Heading>{" "}
+                for your simple website?
+              </Heading>
             </>
           )}
-          <Text
-            color={colorScheme.subheading}
-            size={TextSize.XLARGE}
-            weight={TextWeight.MEDIUM}
-            marginBottom={theme.spacing.xxlarge}
-          >
-            I'd like to hear from you!
-          </Text>
         </HeadingContainer>
 
         <ContactGroup>
@@ -317,9 +358,7 @@ const Contact = ({ location }) => {
                 contactDetail.id !== "location" && contactDetail.id !== "gmail"
               }
               padding={
-                viewport === Viewport.MOBILE
-                  ? theme.spacing.large
-                  : viewport === Viewport.TABLET
+                viewport === Viewport.MOBILE || viewport === Viewport.TABLET
                   ? theme.spacing.xlarge
                   : theme.spacing.xxxlarge
               }
@@ -346,6 +385,11 @@ const Contact = ({ location }) => {
           ))}
         </ContactGroup>
       </Container>
+
+      <Wrapper>
+        <PatternContainer />
+        <Footer />
+      </Wrapper>
     </>
   )
 }

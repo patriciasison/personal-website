@@ -6,7 +6,14 @@ import vectorImmersed from "../assets/vector-immersed.png"
 import vectorMeetup from "../assets/vector-meetup.png"
 import vectorSoftwareEngineer from "../assets/vector-software-engineer.png"
 import vectorWebDevelopment from "../assets/vector-web-development.png"
-import { Container, Heading, HeadingSize, HeadingWeight, Navbar } from "../bits"
+import {
+  Container,
+  Footer,
+  Heading,
+  HeadingSize,
+  HeadingWeight,
+  Navbar,
+} from "../bits"
 import theme from "../bits/theme"
 import { ColorMode } from "../config"
 
@@ -343,6 +350,8 @@ const AboutMe = ({ location }) => {
           </ImageContainer>
         </SubContainer>
       </Container>
+
+      <Footer />
     </>
   )
 }

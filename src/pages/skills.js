@@ -21,12 +21,13 @@ import logoTypescript from "../assets/logo-typescript.png"
 import {
   Card,
   Container,
+  ContainerAlign,
+  Footer,
   Navbar,
   Text,
   TextSize,
   TextTransform,
   TextWeight,
-  ContainerAlign,
 } from "../bits"
 import theme from "../bits/theme"
 import { ColorMode } from "../config"
@@ -34,7 +35,7 @@ import { useViewport, Viewport } from "../hooks"
 
 const SkillsColor = {
   [ColorMode.LIGHT]: {
-    category: theme.color.gray.norm,
+    category: theme.color.gray.dark,
     card: theme.color.white.norm,
     skill: theme.color.black.light,
   },
@@ -212,6 +213,7 @@ const Skills = ({ location }) => {
           </React.Fragment>
         ))}
       </Container>
+      <Footer />
     </>
   )
 }

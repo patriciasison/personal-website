@@ -7,6 +7,7 @@ import styled from "styled-components"
 import {
   Container,
   ContainerDirection,
+  Footer,
   Navbar,
   Text,
   TextSize,
@@ -19,10 +20,10 @@ import { useViewport, Viewport } from "../hooks"
 
 const WorkColor = {
   [ColorMode.LIGHT]: {
-    company: theme.color.gray.norm,
+    company: theme.color.gray.dark,
     selectedCompany: theme.color.blue.xdark,
     position: theme.color.black.xlight,
-    duration: theme.color.gray.norm,
+    duration: theme.color.gray.dark,
     navigate: theme.color.blue.norm,
     timeline: theme.color.blue.xdark,
     titleBar: theme.color.white.xdark,
@@ -102,7 +103,11 @@ const Timeline = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  padding-right: ${theme.spacing.xxxlarge};
+  padding-right: ${theme.spacing.xxlarge};
+
+  @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
+    padding-right: ${theme.spacing.xxxlarge};
+  }
 `
 
 const TimelineCircle = styled.div`
@@ -116,6 +121,11 @@ const TimelineCircle = styled.div`
 
   @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
     border: 4px ${({ background }) => background} solid;
+    height: 9px;
+    width: 9px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
     height: 12px;
     width: 12px;
   }
@@ -127,6 +137,10 @@ const TimelineLine = styled.div`
   width: 4px;
 
   @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
+    height: 74px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
     height: 94px;
   }
 `
@@ -174,12 +188,15 @@ const Content = styled.div`
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  margin-bottom: ${theme.spacing.xxlarge};
+  min-height: 60vh;
   padding: ${theme.spacing.large} ${theme.spacing.xlarge} ${theme.spacing.large}
     ${theme.spacing.mid};
   width: 100%;
 
   @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
     height: 75vh;
+    min-height: 540px;
     padding: ${theme.spacing.large} ${theme.spacing.xxxlarge}
       ${theme.spacing.large} ${theme.spacing.xxlarge};
   }
@@ -477,6 +494,8 @@ const Work = ({ location }) => {
           </Content>
         </Window>
       </Container>
+
+      <Footer />
     </>
   )
 }

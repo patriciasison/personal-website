@@ -5,12 +5,14 @@ export {
   ContainerAlign,
   ContainerDirection,
 } from "./container"
+export { default as Footer } from "./footer"
 export {
   default as Heading,
   HeadingSize,
   HeadingTransform,
   HeadingWeight,
 } from "./heading"
+export { default as IconButton } from "./icon-button"
 export { default as Navbar } from "./navbar"
 export {
   default as Text,

@@ -1,9 +1,9 @@
 export const SiteRoute = {
-  HOME: "/home",
-  ABOUT_ME: "/about-me",
-  SKILLS: "/skills",
-  WORK: "/work",
-  CONTACT: "/contact",
+  HOME: "/home/",
+  ABOUT_ME: "/about-me/",
+  SKILLS: "/skills/",
+  WORK: "/work/",
+  CONTACT: "/contact/",
 }
 
 export const ColorMode = {

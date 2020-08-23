@@ -32,7 +32,8 @@ const theme = {
       xlight: "#3D3D3D",
     },
     gray: {
-      norm: "#575757",
+      dark: "#575757",
+      norm: "#797979",
       light: "#A3A3A3",
     },
     blue: {
