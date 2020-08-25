@@ -168,7 +168,7 @@ const Skills = ({ location }) => {
               color={colorScheme.category}
               letterSpacing=".15rem"
               size={
-                viewport === Viewport.MOBILE ? TextSize.LARGE : TextSize.SMALL
+                viewport === Viewport.MOBILE ? TextSize.LARGE : TextSize.MID
               }
               transform={TextTransform.UPPERCASE}
               weight={TextWeight.MEDIUM}

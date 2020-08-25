@@ -68,16 +68,16 @@ const Wrapper = styled.div`
 `
 
 const PatternContainer = styled.div`
-  background: url(${patternMobile}) bottom center no-repeat;
+  background: url(${patternMobile}) bottom center repeat-x;
   height: 150px;
 
   @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
-    background: url(${patternTablet}) bottom left no-repeat;
+    background: url(${patternTablet}) bottom left repeat-x;
     height: 200px;
   }
 
   @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
-    background: url(${pattern}) bottom center no-repeat;
+    background: url(${pattern}) bottom center repeat-x;
     height: 290px;
   }
 `
