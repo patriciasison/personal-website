@@ -144,11 +144,7 @@ const AboutMe = ({ location }) => {
   const { viewport, initialLoad } = useContext(ViewportContext)
 
   if (initialLoad) {
-    return (
-      <>
-        <Navbar viewport={viewport} pathname={location.pathname} />
-      </>
-    )
+    return <></>
   }
 
   return (

@@ -4,7 +4,7 @@ import theme from "../bits/theme"
 export const ViewportContext = createContext()
 
 const ViewportProvider = ({ children }) => {
-  const [viewport, setViewport] = useState(Viewport.LAPTOP)
+  const [viewport, setViewport] = useState(undefined)
   const [initialLoad, setInitialLoad] = useState(true)
 
   useEffect(() => {

@@ -192,11 +192,7 @@ const Home = ({ location }) => {
   }, [])
 
   if (initialLoad) {
-    return (
-      <>
-        <Navbar viewport={viewport} pathname={location.pathname} />
-      </>
-    )
+    return <></>
   }
 
   return (

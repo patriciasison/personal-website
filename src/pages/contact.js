@@ -256,11 +256,7 @@ const Contact = ({ location }) => {
   ]
 
   if (initialLoad) {
-    return (
-      <>
-        <Navbar pathname={location.pathname} viewport={viewport} />
-      </>
-    )
+    return <></>
   }
 
   return (
