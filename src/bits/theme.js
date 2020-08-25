@@ -3,6 +3,7 @@ const theme = {
     mobile: {
       media: 360,
       width: 300,
+      height: 700,
     },
     tablet: {
       media: 768,

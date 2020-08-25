@@ -44,6 +44,7 @@ const Wrapper = styled.div`
   height: 100%;
   justify-content: flex-end;
   left: 0;
+  min-height: ${theme.breakpoint.mobile.height}px;
   position: absolute;
   top: 0;
   width: 100%;
