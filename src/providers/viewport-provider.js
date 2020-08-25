@@ -1,12 +1,18 @@
-import { useState, useEffect } from "react"
+import React, { createContext, useEffect, useState } from "react"
 import theme from "../bits/theme"
 
-const useViewport = () => {
-  const [viewport, setViewport] = useState(Viewport.MOBILE)
+export const ViewportContext = createContext()
+
+const ViewportProvider = ({ children }) => {
+  const [viewport, setViewport] = useState(Viewport.LAPTOP)
   const [initialLoad, setInitialLoad] = useState(true)
 
   useEffect(() => {
     const handleResize = () => {
+      if (window === undefined) {
+        return
+      }
+
       if (window.innerWidth >= theme.breakpoint.desktop.media) {
         setViewport(Viewport.DESKTOP)
       } else if (window.innerWidth >= theme.breakpoint.laptop.media) {
@@ -31,7 +37,11 @@ const useViewport = () => {
     }
   }, [])
 
-  return [viewport, initialLoad]
+  return (
+    <ViewportContext.Provider value={{ viewport, initialLoad }}>
+      {children}
+    </ViewportContext.Provider>
+  )
 }
 
 export const Viewport = {
@@ -41,4 +51,4 @@ export const Viewport = {
   DESKTOP: "desktop",
 }
 
-export default useViewport
+export default ViewportProvider

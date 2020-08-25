@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import ArrowBackIcon from "@material-ui/icons/ArrowBack"
 import ArrowForwardIcon from "@material-ui/icons/ArrowForward"
 import MinimizeIcon from "@material-ui/icons/Minimize"
@@ -16,7 +16,7 @@ import {
 } from "../bits"
 import theme from "../bits/theme"
 import { ColorMode } from "../config"
-import { useViewport, Viewport } from "../hooks"
+import { Viewport, ViewportContext } from "../providers"
 
 const WorkColor = {
   [ColorMode.LIGHT]: {
@@ -306,20 +306,20 @@ const Work = ({ location }) => {
     setSelectedCompany(companies[newCompanyIndex % companies.length])
   }
 
-  const [viewport, initialLoad] = useViewport()
+  const { viewport, initialLoad } = useContext(ViewportContext)
   const isMobileView = viewport === Viewport.MOBILE
 
   if (initialLoad) {
     return (
       <>
-        <Navbar pathname={location.pathname} />
+        <Navbar viewport={viewport} pathname={location.pathname} />
       </>
     )
   }
 
   return (
     <>
-      <Navbar pathname={location.pathname} />
+      <Navbar viewport={viewport} pathname={location.pathname} />
       <Container
         direction={
           isMobileView

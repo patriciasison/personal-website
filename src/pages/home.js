@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import styled from "styled-components"
 import patternDesktop from "../assets/pattern.png"
 import patternLaptop from "../assets/pattern-laptop.png"
@@ -18,7 +18,7 @@ import {
 } from "../bits"
 import theme from "../bits/theme"
 import { ColorMode, SiteRoute } from "../config"
-import { useViewport, Viewport } from "../hooks"
+import { Viewport, ViewportContext } from "../providers"
 
 const HomeColor = {
   [ColorMode.LIGHT]: {
@@ -173,7 +173,7 @@ const Home = ({ location }) => {
   const colorScheme = HomeColor[ColorMode.LIGHT]
 
   const [navBgEnabled, setNavBgEnabled] = useState(false)
-  const [viewport, initialLoad] = useViewport()
+  const { viewport, initialLoad } = useContext(ViewportContext)
   const isMobileView = viewport === Viewport.MOBILE
 
   useEffect(() => {
@@ -194,7 +194,7 @@ const Home = ({ location }) => {
   if (initialLoad) {
     return (
       <>
-        <Navbar pathname={location.pathname} />
+        <Navbar viewport={viewport} pathname={location.pathname} />
       </>
     )
   }
@@ -202,7 +202,11 @@ const Home = ({ location }) => {
   return (
     <>
       <PatternContainer background={colorScheme.patternBg} />
-      <Navbar pathname={location.pathname} backgroundEnabled={navBgEnabled} />
+      <Navbar
+        viewport={viewport}
+        pathname={location.pathname}
+        backgroundEnabled={navBgEnabled}
+      />
 
       <MainContainer>
         {isMobileView && (

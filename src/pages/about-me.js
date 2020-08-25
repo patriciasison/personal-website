@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import vectorCodeQuality from "../assets/vector-code-quality.png"
 import vectorFrontend from "../assets/vector-frontend.png"
@@ -16,7 +16,7 @@ import {
 } from "../bits"
 import theme from "../bits/theme"
 import { ColorMode } from "../config"
-import { useViewport } from "../hooks"
+import { ViewportContext } from "../providers"
 
 const AboutMeColor = {
   [ColorMode.LIGHT]: {
@@ -141,19 +141,19 @@ const TextContainer = styled.div`
 
 const AboutMe = ({ location }) => {
   const colorScheme = AboutMeColor[ColorMode.LIGHT]
-  const [, initialLoad] = useViewport()
+  const { viewport, initialLoad } = useContext(ViewportContext)
 
   if (initialLoad) {
     return (
       <>
-        <Navbar pathname={location.pathname} />
+        <Navbar viewport={viewport} pathname={location.pathname} />
       </>
     )
   }
 
   return (
     <>
-      <Navbar pathname={location.pathname} />
+      <Navbar viewport={viewport} pathname={location.pathname} />
       <Container>
         <SubContainer>
           <ImageContainer>

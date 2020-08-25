@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import logoAngular from "../assets/logo-angular.png"
 import logoApollo from "../assets/logo-apollo.png"
@@ -31,7 +31,7 @@ import {
 } from "../bits"
 import theme from "../bits/theme"
 import { ColorMode } from "../config"
-import { useViewport, Viewport } from "../hooks"
+import { Viewport, ViewportContext } from "../providers"
 
 const SkillsColor = {
   [ColorMode.LIGHT]: {
@@ -93,7 +93,7 @@ const Image = styled.img`
 
 const Skills = ({ location }) => {
   const colorScheme = SkillsColor[ColorMode.LIGHT]
-  const [viewport, initialLoad] = useViewport()
+  const { viewport, initialLoad } = useContext(ViewportContext)
 
   const categories = [
     {
@@ -144,14 +144,14 @@ const Skills = ({ location }) => {
   if (initialLoad) {
     return (
       <>
-        <Navbar pathname={location.pathname} />
+        <Navbar viewport={viewport} pathname={location.pathname} />
       </>
     )
   }
 
   return (
     <>
-      <Navbar pathname={location.pathname} />
+      <Navbar viewport={viewport} pathname={location.pathname} />
       <Container
         align={
           viewport === Viewport.MOBILE

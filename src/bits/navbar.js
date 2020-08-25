@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React from "react"
 import Helmet from "react-helmet"
 import EmailIcon from "@material-ui/icons/Email"
 import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined"
@@ -15,6 +15,7 @@ import PropTypes from "prop-types"
 import styled from "styled-components"
 import theme from "./theme"
 import { ColorMode, SiteRoute, SITE_NAME } from "../config"
+import { Viewport } from "../providers/viewport-provider"
 
 const NavbarColor = {
   [ColorMode.LIGHT]: {
@@ -119,27 +120,21 @@ const StyledNavItem = styled(Link)`
   ${props => cssNavItem(props)}
 `
 
-const Navbar = ({ navItems, pathname, backgroundEnabled, colorMode }) => {
+const Navbar = ({
+  navItems,
+  pathname,
+  viewport,
+  backgroundEnabled,
+  colorMode,
+}) => {
   const colorScheme = NavbarColor[colorMode]
   const activeNavItemId = pathname === "/" ? SiteRoute.HOME : pathname
-  const [showIcons, setShowIcons] = useState(false)
+  const showIcons = viewport === Viewport.MOBILE
 
   const formatPathnameToTitle = string => {
     const title = string.replace(/\//g, "").replace(/-/g, " ")
     return title[0].toUpperCase() + title.substring(1)
   }
-
-  useEffect(() => {
-    const handleResize = () => {
-      setShowIcons(window.innerWidth < theme.breakpoint.tablet.media)
-    }
-    handleResize()
-
-    window.addEventListener("resize", handleResize)
-    return () => {
-      window.removeEventListener("resize", handleResize)
-    }
-  }, [])
 
   return (
     <>
@@ -226,6 +221,7 @@ Navbar.defaultProps = {
 Navbar.propTypes = {
   navItems: PropTypes.arrayOf(PropTypes.shape(navItemShape)).isRequired,
   pathname: PropTypes.string.isRequired,
+  viewport: PropTypes.oneOf(Object.values(Viewport)).isRequired,
   backgroundEnabled: PropTypes.bool,
   colorMode: PropTypes.oneOf(Object.values(ColorMode)),
 }

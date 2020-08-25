@@ -5,6 +5,7 @@ import "./global-styles.css"
 import favicon from "./src/assets/favicon.png"
 import theme from "./src/bits/theme"
 import { SITE_NAME } from "./src/config"
+import { ViewportProvider } from "./src/providers"
 
 export const wrapRootElement = ({ element }) => (
   <>
@@ -12,6 +13,8 @@ export const wrapRootElement = ({ element }) => (
       <title>{SITE_NAME}</title>
       <link rel="icon" href={favicon} />
     </Helmet>
-    <ThemeProvider theme={theme}>{element}</ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <ViewportProvider>{element}</ViewportProvider>
+    </ThemeProvider>
   </>
 )

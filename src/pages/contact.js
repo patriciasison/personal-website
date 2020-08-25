@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import logoGmail from "../assets/logo-gmail.png"
 import logoGithub from "../assets/logo-github.png"
@@ -22,7 +22,7 @@ import {
 } from "../bits"
 import theme from "../bits/theme"
 import { ColorMode } from "../config"
-import { useViewport, Viewport } from "../hooks"
+import { Viewport, ViewportContext } from "../providers"
 
 const ContactColor = {
   [ColorMode.LIGHT]: {
@@ -154,8 +154,7 @@ const TextContainer = styled.div`
 
 const Contact = ({ location }) => {
   const colorScheme = ContactColor[ColorMode.LIGHT]
-
-  const [viewport, initialLoad] = useViewport()
+  const { viewport, initialLoad } = useContext(ViewportContext)
 
   const contactDetails = [
     {
@@ -259,14 +258,14 @@ const Contact = ({ location }) => {
   if (initialLoad) {
     return (
       <>
-        <Navbar pathname={location.pathname} />
+        <Navbar pathname={location.pathname} viewport={viewport} />
       </>
     )
   }
 
   return (
     <>
-      <Navbar pathname={location.pathname} />
+      <Navbar pathname={location.pathname} viewport={viewport} />
       <Container
         align={ContainerAlign.CENTER}
         marginTop={
