@@ -179,12 +179,19 @@ const Skills = ({ location }) => {
                   key={`card-${skill.name}`}
                   background={colorScheme.card}
                   padding={theme.spacing.xlarge}
-                  size={
+                  height={
                     viewport === Viewport.MOBILE
-                      ? cardSize.mobile
+                      ? `${cardSize.mobile}px`
                       : viewport === Viewport.TABLET
-                      ? cardSize.tablet
-                      : cardSize.laptop
+                      ? `${cardSize.tablet}px`
+                      : `${cardSize.laptop}px`
+                  }
+                  width={
+                    viewport === Viewport.MOBILE
+                      ? `${cardSize.mobile}px`
+                      : viewport === Viewport.TABLET
+                      ? `${cardSize.tablet}px`
+                      : `${cardSize.laptop}px`
                   }
                   marginBottom={
                     viewport === Viewport.MOBILE ? theme.spacing.large : "0"

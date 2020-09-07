@@ -4,21 +4,23 @@ import styled from "styled-components"
 
 const cssCard = ({
   background,
-  isClickable,
+  direction,
+  height,
   padding,
-  size,
+  width,
+  isClickable,
   marginBottom,
   marginRight,
 }) => `
   align-items: center;
   background-color: ${background};
   display: flex;
-  flex-direction: column;
-  height: ${size}px;
+  flex-direction: ${direction};
+  height: ${height};
   justify-content: space-between;
   margin: 0 ${marginRight} ${marginBottom} 0;
   padding: ${padding};
-  width: ${size}px;
+  width: ${width};
 
   ${
     isClickable
@@ -40,18 +42,22 @@ const StyledCard = styled.div`
 const Card = ({
   children,
   background,
-  isClickable,
+  direction,
+  height,
   padding,
-  size,
+  width,
+  isClickable,
   marginBottom,
   marginRight,
   onClick,
 }) => (
   <StyledCard
     background={background}
-    isClickable={isClickable}
+    direction={direction}
+    height={height}
     padding={padding}
-    size={size}
+    width={width}
+    isClickable={isClickable}
     marginBottom={marginBottom}
     marginRight={marginRight}
     onClick={onClick}
@@ -62,7 +68,10 @@ const Card = ({
 
 Card.defaultProps = {
   isClickable: false,
+  direction: "column",
+  height: "auto",
   padding: "0",
+  width: "auto",
   marginBottom: "0",
   marginRight: "0",
   onClick: () => {},
@@ -71,9 +80,11 @@ Card.defaultProps = {
 Card.propTypes = {
   children: PropTypes.node.isRequired,
   background: PropTypes.string.isRequired,
-  isClickable: PropTypes.bool,
+  direction: PropTypes.string,
+  height: PropTypes.string,
   padding: PropTypes.string,
-  size: PropTypes.number.isRequired,
+  width: PropTypes.string,
+  isClickable: PropTypes.bool,
   marginBottom: PropTypes.string,
   marginRight: PropTypes.string,
   onClick: PropTypes.func,

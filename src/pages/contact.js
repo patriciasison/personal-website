@@ -44,25 +44,25 @@ const Wrapper = styled.div`
   height: 100%;
   justify-content: flex-end;
   left: 0;
-  min-height: ${theme.breakpoint.mobile.height}px;
+  min-height: ${theme.breakpoint.mobile.minHeight}px;
   position: absolute;
   top: 0;
   width: 100%;
   z-index: -1;
 
   @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
-    min-height: ${theme.breakpoint.tablet.height}px;
+    min-height: ${theme.breakpoint.tablet.minHeight}px;
   }
 
   @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
     min-height: calc(
-      ${theme.breakpoint.laptop.height}px + 3 * ${theme.spacing.xxxxlarge}
+      ${theme.breakpoint.laptop.minHeight}px + 3 * ${theme.spacing.xxxxlarge}
     );
   }
 
   @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
     min-height: calc(
-      ${theme.breakpoint.laptop.height}px + 4 * ${theme.spacing.xxxxlarge} +
+      ${theme.breakpoint.desktop.minHeight}px + 4 * ${theme.spacing.xxxxlarge} +
         ${theme.spacing.large}
     );
   }
@@ -366,12 +366,19 @@ const Contact = ({ location }) => {
                   ? theme.spacing.xlarge
                   : theme.spacing.xxxlarge
               }
-              size={
+              height={
                 viewport === Viewport.MOBILE
-                  ? cardSize.mobile
+                  ? `${cardSize.mobile}px`
                   : viewport === Viewport.TABLET
-                  ? cardSize.tablet
-                  : cardSize.laptop
+                  ? `${cardSize.tablet}px`
+                  : `${cardSize.laptop}px`
+              }
+              width={
+                viewport === Viewport.MOBILE
+                  ? `${cardSize.mobile}px`
+                  : viewport === Viewport.TABLET
+                  ? `${cardSize.tablet}px`
+                  : `${cardSize.laptop}px`
               }
               marginBottom={
                 viewport === Viewport.MOBILE ? theme.spacing.large : "0"

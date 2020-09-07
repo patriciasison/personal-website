@@ -4,9 +4,10 @@ import LinkedInIcon from "@material-ui/icons/LinkedIn"
 import MailIcon from "@material-ui/icons/Mail"
 import PropTypes from "prop-types"
 import styled from "styled-components"
-import theme from "./theme"
 import IconButton from "./icon-button"
+import Link, { LinkWeight } from "./link"
 import Text, { TextSize, TextWeight } from "./text"
+import theme from "./theme"
 import { ColorMode, SiteRoute } from "../config"
 
 const FooterColor = {
@@ -58,16 +59,6 @@ const StyledFooterText = styled.div`
   flex-direction: column;
 `
 
-const cssLink = color => `
-  color: ${color};
-  font-size: inherit;
-  font-weight: 500;
-`
-
-const StyledLink = styled.a`
-  ${({ color }) => cssLink(color)}
-`
-
 const cssContactGroup = color => `
   color: ${color};
   display: flex;
@@ -99,12 +90,14 @@ const Footer = ({ colorMode }) => {
             weight={TextWeight.LIGHT}
           >
             Vectors created by{" "}
-            <StyledLink
+            <Link
               href="https://www.freepik.com"
+              target="_blank"
               color={colorScheme.footerLink}
+              weight={LinkWeight.MEDIUM}
             >
               freepik
-            </StyledLink>
+            </Link>
             .
           </Text>
         </StyledFooterText>

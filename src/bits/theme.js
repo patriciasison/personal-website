@@ -1,24 +1,30 @@
+import { Viewport } from "../providers"
+
 const theme = {
   breakpoint: {
-    mobile: {
+    [Viewport.MOBILE]: {
       media: 360,
       width: 300,
-      height: 700,
+      minHeight: 568,
+      maxHeight: 812,
     },
-    tablet: {
+    [Viewport.TABLET]: {
       media: 768,
       width: 680,
-      height: 670,
+      minHeight: 670,
+      maxHeight: 1366,
     },
-    laptop: {
+    [Viewport.LAPTOP]: {
       media: 1024,
       width: 930,
-      height: 570,
+      minHeight: 570,
+      maxHeight: 720,
     },
-    desktop: {
+    [Viewport.DESKTOP]: {
       media: 1280,
       width: 1200,
-      height: 770,
+      minHeight: 770,
+      maxHeight: 1440,
     },
   },
   color: {
@@ -48,12 +54,15 @@ const theme = {
     },
     yellow: {
       norm: "#E3D65A",
+      light: "#FAF6CD",
     },
     green: {
       norm: "#72BF93",
+      light: "#D5EEDF",
     },
     purple: {
       norm: "#4A0A9E",
+      light: "#E1E0FF",
     },
   },
 

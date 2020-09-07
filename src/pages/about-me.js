@@ -41,7 +41,7 @@ const SubContainer = styled.div`
     );
     margin-bottom: calc(${theme.spacing.xxlarge} + ${theme.size.xxsmall});
     min-height: calc(
-      ${theme.breakpoint.tablet.height}px - 2 *
+      ${theme.breakpoint.tablet.minHeight}px - 2 *
         (2 * ${theme.spacing.large} + ${theme.size.xxxsmall})
     );
   }
@@ -52,14 +52,14 @@ const SubContainer = styled.div`
     );
     margin-bottom: calc(${theme.spacing.xxlarge} + ${theme.size.xxxsmall});
     min-height: calc(
-      ${theme.breakpoint.laptop.height}px - 2 *
+      ${theme.breakpoint.laptop.minHeight}px - 2 *
         (2 * ${theme.spacing.large} + ${theme.size.xxxsmall})
     );
   }
 
   @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
     min-height: calc(
-      ${theme.breakpoint.desktop.height}px - 2 *
+      ${theme.breakpoint.desktop.minHeight}px - 2 *
         (2 * ${theme.spacing.large} + ${theme.size.xxxsmall})
     );
   }
