@@ -12,6 +12,7 @@ import patternDesktop from "../assets/pattern.png"
 import patternLaptop from "../assets/pattern-laptop.png"
 import patternMobile from "../assets/pattern-mobile.png"
 import patternTablet from "../assets/pattern-tablet.png"
+import patternSub from "../assets/pattern2.png"
 import photo from "../assets/photo.png"
 import vectorFrontend from "../assets/vector-frontend.png"
 import vectorImmersed from "../assets/vector-immersed.png"
@@ -312,11 +313,33 @@ const FillerContainer = styled.div`
   }
 `
 
-const AboutMeContainer = styled.div`
+const SubPatternContainer = styled.div`
+  height: 100vh;
+  width: 100%;
+
+  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
+    background: url(${patternSub}) bottom center repeat-x;
+    max-height: ${theme.breakpoint[Viewport.TABLET].maxHeight}px;
+    min-height: ${theme.breakpoint[Viewport.TABLET].minHeight}px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP].media}px) {
+    background: url(${patternSub}) center center repeat-x;
+    max-height: ${theme.breakpoint[Viewport.LAPTOP].maxHeight}px;
+    min-height: ${theme.breakpoint[Viewport.LAPTOP].minHeight}px;
+  }
+
+  @media screen and (min-width: ${theme.breakpoint[Viewport.DESKTOP].media}px) {
+    max-height: ${theme.breakpoint[Viewport.DESKTOP].maxHeight}px;
+    min-height: ${theme.breakpoint[Viewport.DESKTOP].minHeight}px;
+  }
+`
+
+const SectionContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   justify-content: center;
   margin: 0 auto;
   width: ${theme.breakpoint[Viewport.MOBILE].width}px;
@@ -371,28 +394,6 @@ const CardTextContainer = styled.div`
 `
 
 const VectorImage = styled.img``
-
-const SkillsContainer = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: center;
-  margin: 0 auto;
-  width: ${theme.breakpoint[Viewport.MOBILE].width}px;
-
-  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
-    width: ${theme.breakpoint[Viewport.TABLET].width}px;
-  }
-
-  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP].media}px) {
-    width: ${theme.breakpoint[Viewport.LAPTOP].width}px;
-  }
-
-  @media screen and (min-width: ${theme.breakpoint[Viewport.DESKTOP].media}px) {
-    width: ${theme.breakpoint[Viewport.DESKTOP].width}px;
-  }
-`
 
 const ImageContainer = styled.div`
   display: flex;
@@ -568,237 +569,269 @@ const Home = ({ location }) => {
 
       <FillerContainer />
 
-      <AboutMeContainer>
-        <Text
-          color={colorScheme.sectionHeading}
-          letterSpacing=".15rem"
-          size={TextSize.XLARGE}
-          transform={TextTransform.UPPERCASE}
-          weight={TextWeight.MEDIUM}
-          marginBottom={theme.spacing.xxlarge}
-        >
-          About Me
-        </Text>
+      <SubPatternContainer>
+        <SectionContainer>
+          <Text
+            color={colorScheme.sectionHeading}
+            letterSpacing=".15rem"
+            size={TextSize.XLARGE}
+            transform={TextTransform.UPPERCASE}
+            weight={TextWeight.MEDIUM}
+            marginBottom={theme.spacing.xxlarge}
+          >
+            About Me
+          </Text>
 
-        {!isMobileView && (
-          <SectionGroup marginBottom={theme.spacing.xxxlarge}>
-            <Card
-              background={colorScheme.cardBg}
-              height={aboutMeCardSize[viewport].height}
-              width={aboutMeCardSize[viewport].width}
-              marginRight={
-                viewport === Viewport.TABLET
-                  ? theme.spacing.xxlarge
-                  : theme.spacing.xxxlarge
-              }
-            >
-              <VectorContainer background={colorScheme.card1Bg}>
-                <VectorImage src={vectorWebDevelopment} width="52%" />
-              </VectorContainer>
-              <CardTextContainer>
-                <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
-                  Experienced in
-                </Heading>
-                <Heading
-                  color={colorScheme.cardHighlightText}
-                  size={HeadingSize.MID}
-                >
-                  full-stack web
-                </Heading>
-                <Heading
-                  color={colorScheme.cardHighlightText}
-                  size={HeadingSize.MID}
-                >
-                  development
-                </Heading>
-              </CardTextContainer>
-            </Card>
-            <Card
-              background={colorScheme.cardBg}
-              height={aboutMeCardSize[viewport].height}
-              width={aboutMeCardSize[viewport].width}
-              marginRight={
-                viewport === Viewport.TABLET
-                  ? theme.spacing.xxlarge
-                  : theme.spacing.xxxlarge
-              }
-            >
-              <VectorContainer background={colorScheme.card2Bg}>
-                <VectorImage src={vectorImmersed} width="65%" />
-              </VectorContainer>
-              <CardTextContainer>
-                <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
-                  Working for
-                </Heading>
-                <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
+          {!isMobileView && (
+            <SectionGroup marginBottom={theme.spacing.xxxlarge}>
+              <Card
+                background={colorScheme.cardBg}
+                height={aboutMeCardSize[viewport].height}
+                width={aboutMeCardSize[viewport].width}
+                marginRight={
+                  viewport === Viewport.TABLET
+                    ? theme.spacing.xxlarge
+                    : theme.spacing.xxxlarge
+                }
+              >
+                <VectorContainer background={colorScheme.card1Bg}>
+                  <VectorImage src={vectorWebDevelopment} width="52%" />
+                </VectorContainer>
+                <CardTextContainer>
+                  <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
+                    Experienced in
+                  </Heading>
                   <Heading
                     color={colorScheme.cardHighlightText}
                     size={HeadingSize.MID}
                   >
-                    4 years
-                  </Heading>{" "}
-                  in the
-                </Heading>
-                <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
-                  tech industry
-                </Heading>
-              </CardTextContainer>
-            </Card>
-            <Card
-              background={colorScheme.cardBg}
-              height={aboutMeCardSize[viewport].height}
-              width={aboutMeCardSize[viewport].width}
-            >
-              <VectorContainer background={colorScheme.card3Bg}>
-                <VectorImage src={vectorFrontend} width="55%" />
-              </VectorContainer>
-              <CardTextContainer>
-                <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
-                  Emphasizes
-                </Heading>
-                <Heading
-                  color={colorScheme.cardHighlightText}
-                  size={HeadingSize.MID}
-                >
-                  good UI/UX,
-                </Heading>
-                <Heading
-                  color={colorScheme.cardHighlightText}
-                  size={HeadingSize.MID}
-                >
-                  quality of code
-                </Heading>
-              </CardTextContainer>
-            </Card>
-          </SectionGroup>
-        )}
-
-        {isMobileView && (
-          <SectionGroup marginBottom={theme.spacing.xxxlarge}>
-            <Card
-              background={colorScheme.cardBg}
-              direction="row"
-              height={aboutMeCardSize[viewport].height}
-              width={aboutMeCardSize[viewport].width}
-              marginBottom={theme.spacing.mid}
-            >
-              <CardTextContainer>
-                <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
-                  Experienced in
-                </Heading>
-                <Heading
-                  color={colorScheme.cardHighlightText}
-                  size={HeadingSize.MID}
-                >
-                  full-stack web
-                </Heading>
-                <Heading
-                  color={colorScheme.cardHighlightText}
-                  size={HeadingSize.MID}
-                >
-                  development
-                </Heading>
-              </CardTextContainer>
-              <VectorContainer background={colorScheme.card1BgMobile}>
-                <VectorImage src={vectorWebDevelopment} width="70%" />
-              </VectorContainer>
-            </Card>
-            <Card
-              background={colorScheme.cardBg}
-              direction="row"
-              height={aboutMeCardSize[viewport].height}
-              width={aboutMeCardSize[viewport].width}
-              marginBottom={theme.spacing.mid}
-            >
-              <CardTextContainer>
-                <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
-                  Working for
-                </Heading>
-                <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
+                    full-stack web
+                  </Heading>
                   <Heading
                     color={colorScheme.cardHighlightText}
                     size={HeadingSize.MID}
                   >
-                    4 years
-                  </Heading>{" "}
-                  in the
-                </Heading>
-                <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
-                  tech industry
-                </Heading>
-              </CardTextContainer>
-              <VectorContainer background={colorScheme.card2BgMobile}>
-                <VectorImage src={vectorImmersed} width="82%" />
-              </VectorContainer>
-            </Card>
-            <Card
-              background={colorScheme.cardBg}
-              direction="row"
-              height={aboutMeCardSize[viewport].height}
-              width={aboutMeCardSize[viewport].width}
-            >
-              <CardTextContainer>
-                <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
-                  Emphasizes
-                </Heading>
-                <Heading
-                  color={colorScheme.cardHighlightText}
-                  size={HeadingSize.MID}
-                >
-                  good UI/UX,
-                </Heading>
-                <Heading
-                  color={colorScheme.cardHighlightText}
-                  size={HeadingSize.MID}
-                >
-                  quality of code
-                </Heading>
-              </CardTextContainer>
-              <VectorContainer background={colorScheme.card3BgMobile}>
-                <VectorImage src={vectorFrontend} width="78%" />
-              </VectorContainer>
-            </Card>
-          </SectionGroup>
-        )}
+                    development
+                  </Heading>
+                </CardTextContainer>
+              </Card>
+              <Card
+                background={colorScheme.cardBg}
+                height={aboutMeCardSize[viewport].height}
+                width={aboutMeCardSize[viewport].width}
+                marginRight={
+                  viewport === Viewport.TABLET
+                    ? theme.spacing.xxlarge
+                    : theme.spacing.xxxlarge
+                }
+              >
+                <VectorContainer background={colorScheme.card2Bg}>
+                  <VectorImage src={vectorImmersed} width="65%" />
+                </VectorContainer>
+                <CardTextContainer>
+                  <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
+                    Working for
+                  </Heading>
+                  <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
+                    <Heading
+                      color={colorScheme.cardHighlightText}
+                      size={HeadingSize.MID}
+                    >
+                      4 years
+                    </Heading>{" "}
+                    in the
+                  </Heading>
+                  <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
+                    tech industry
+                  </Heading>
+                </CardTextContainer>
+              </Card>
+              <Card
+                background={colorScheme.cardBg}
+                height={aboutMeCardSize[viewport].height}
+                width={aboutMeCardSize[viewport].width}
+              >
+                <VectorContainer background={colorScheme.card3Bg}>
+                  <VectorImage src={vectorFrontend} width="55%" />
+                </VectorContainer>
+                <CardTextContainer>
+                  <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
+                    Emphasizes
+                  </Heading>
+                  <Heading
+                    color={colorScheme.cardHighlightText}
+                    size={HeadingSize.MID}
+                  >
+                    good UI/UX,
+                  </Heading>
+                  <Heading
+                    color={colorScheme.cardHighlightText}
+                    size={HeadingSize.MID}
+                  >
+                    quality of code
+                  </Heading>
+                </CardTextContainer>
+              </Card>
+            </SectionGroup>
+          )}
 
-        <Text color={colorScheme.sectionSeeMore} size={TextSize.LARGE}>
-          See more on{" "}
-          <Link href={SiteRoute.WORK} color={colorScheme.sectionSeeLink}>
-            Work →
-          </Link>
-        </Text>
-      </AboutMeContainer>
+          {isMobileView && (
+            <SectionGroup marginBottom={theme.spacing.xxxlarge}>
+              <Card
+                background={colorScheme.cardBg}
+                direction="row"
+                height={aboutMeCardSize[viewport].height}
+                width={aboutMeCardSize[viewport].width}
+                marginBottom={theme.spacing.mid}
+              >
+                <CardTextContainer>
+                  <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
+                    Experienced in
+                  </Heading>
+                  <Heading
+                    color={colorScheme.cardHighlightText}
+                    size={HeadingSize.MID}
+                  >
+                    full-stack web
+                  </Heading>
+                  <Heading
+                    color={colorScheme.cardHighlightText}
+                    size={HeadingSize.MID}
+                  >
+                    development
+                  </Heading>
+                </CardTextContainer>
+                <VectorContainer background={colorScheme.card1BgMobile}>
+                  <VectorImage src={vectorWebDevelopment} width="70%" />
+                </VectorContainer>
+              </Card>
+              <Card
+                background={colorScheme.cardBg}
+                direction="row"
+                height={aboutMeCardSize[viewport].height}
+                width={aboutMeCardSize[viewport].width}
+                marginBottom={theme.spacing.mid}
+              >
+                <CardTextContainer>
+                  <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
+                    Working for
+                  </Heading>
+                  <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
+                    <Heading
+                      color={colorScheme.cardHighlightText}
+                      size={HeadingSize.MID}
+                    >
+                      4 years
+                    </Heading>{" "}
+                    in the
+                  </Heading>
+                  <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
+                    tech industry
+                  </Heading>
+                </CardTextContainer>
+                <VectorContainer background={colorScheme.card2BgMobile}>
+                  <VectorImage src={vectorImmersed} width="82%" />
+                </VectorContainer>
+              </Card>
+              <Card
+                background={colorScheme.cardBg}
+                direction="row"
+                height={aboutMeCardSize[viewport].height}
+                width={aboutMeCardSize[viewport].width}
+              >
+                <CardTextContainer>
+                  <Heading color={colorScheme.cardText} size={HeadingSize.MID}>
+                    Emphasizes
+                  </Heading>
+                  <Heading
+                    color={colorScheme.cardHighlightText}
+                    size={HeadingSize.MID}
+                  >
+                    good UI/UX,
+                  </Heading>
+                  <Heading
+                    color={colorScheme.cardHighlightText}
+                    size={HeadingSize.MID}
+                  >
+                    quality of code
+                  </Heading>
+                </CardTextContainer>
+                <VectorContainer background={colorScheme.card3BgMobile}>
+                  <VectorImage src={vectorFrontend} width="78%" />
+                </VectorContainer>
+              </Card>
+            </SectionGroup>
+          )}
 
-      <SkillsContainer>
-        <Heading
-          color={colorScheme.sectionHeading}
-          size={isMobileView ? HeadingSize.SMALL : HeadingSize.MID}
-          marginBottom={
-            isMobileView ? theme.spacing.xlarge : theme.spacing.xxlarge
-          }
-        >
-          Skill set includes
-        </Heading>
-        {!isMobileView &&
-          skillGroups.map((skillGroup, index1) => (
-            <SectionGroup
-              key={`skillGroup-${index1}`}
-              marginBottom={
-                index1 + 1 < skillGroups.length
-                  ? theme.spacing.large
-                  : theme.spacing.xxxlarge
-              }
-            >
-              {skillGroup.map((skill, index2) => (
+          <Text color={colorScheme.sectionSeeMore} size={TextSize.LARGE}>
+            See more on{" "}
+            <Link href={SiteRoute.WORK} color={colorScheme.sectionSeeLink}>
+              Work →
+            </Link>
+          </Text>
+        </SectionContainer>
+      </SubPatternContainer>
+
+      <SubPatternContainer>
+        <SectionContainer>
+          <Heading
+            color={colorScheme.sectionHeading}
+            size={isMobileView ? HeadingSize.SMALL : HeadingSize.MID}
+            marginBottom={
+              isMobileView ? theme.spacing.xlarge : theme.spacing.xxlarge
+            }
+          >
+            Skill set includes
+          </Heading>
+          {!isMobileView &&
+            skillGroups.map((skillGroup, index1) => (
+              <SectionGroup
+                key={`skillGroup-${index1}`}
+                marginBottom={
+                  index1 + 1 < skillGroups.length
+                    ? theme.spacing.large
+                    : theme.spacing.xxxlarge
+                }
+              >
+                {skillGroup.map((skill, index2) => (
+                  <Card
+                    key={`card-${skill.name}`}
+                    background={colorScheme.cardBg}
+                    padding={theme.spacing.xlarge}
+                    height={skillCardSize[viewport].height}
+                    width={skillCardSize[viewport].width}
+                    marginRight={
+                      index2 + 1 < skillGroup.length ? theme.spacing.large : "0"
+                    }
+                  >
+                    <ImageContainer key={`imgContainer-${skill.name}`}>
+                      <Image key={`img-${skill.name}`} src={skill.logo} />
+                    </ImageContainer>
+                    <Text
+                      key={skill.name}
+                      color={colorScheme.cardText}
+                      size={TextSize.XLARGE}
+                      weight={TextWeight.MEDIUM}
+                    >
+                      {skill.name}
+                    </Text>
+                  </Card>
+                ))}
+              </SectionGroup>
+            ))}
+          {isMobileView && (
+            <SectionGroup marginBottom={theme.spacing.xxlarge}>
+              {skills.map((skill, index) => (
                 <Card
                   key={`card-${skill.name}`}
                   background={colorScheme.cardBg}
                   padding={theme.spacing.xlarge}
                   height={skillCardSize[viewport].height}
                   width={skillCardSize[viewport].width}
-                  marginRight={
-                    index2 + 1 < skillGroup.length ? theme.spacing.large : "0"
+                  marginBottom={
+                    index + 1 < skills.length - 1 ? theme.spacing.mid : "0"
                   }
+                  marginRight={index % 2 === 0 ? theme.spacing.large : "0"}
                 >
                   <ImageContainer key={`imgContainer-${skill.name}`}>
                     <Image key={`img-${skill.name}`} src={skill.logo} />
@@ -814,43 +847,15 @@ const Home = ({ location }) => {
                 </Card>
               ))}
             </SectionGroup>
-          ))}
-        {isMobileView && (
-          <SectionGroup marginBottom={theme.spacing.xxlarge}>
-            {skills.map((skill, index) => (
-              <Card
-                key={`card-${skill.name}`}
-                background={colorScheme.cardBg}
-                padding={theme.spacing.xlarge}
-                height={skillCardSize[viewport].height}
-                width={skillCardSize[viewport].width}
-                marginBottom={
-                  index + 1 < skills.length - 1 ? theme.spacing.mid : "0"
-                }
-                marginRight={index % 2 === 0 ? theme.spacing.large : "0"}
-              >
-                <ImageContainer key={`imgContainer-${skill.name}`}>
-                  <Image key={`img-${skill.name}`} src={skill.logo} />
-                </ImageContainer>
-                <Text
-                  key={skill.name}
-                  color={colorScheme.cardText}
-                  size={TextSize.XLARGE}
-                  weight={TextWeight.MEDIUM}
-                >
-                  {skill.name}
-                </Text>
-              </Card>
-            ))}
-          </SectionGroup>
-        )}
-        <Text color={colorScheme.sectionSeeMore} size={TextSize.LARGE}>
-          See more on{" "}
-          <Link href={SiteRoute.SKILLS} color={colorScheme.sectionSeeLink}>
-            Skills →
-          </Link>
-        </Text>
-      </SkillsContainer>
+          )}
+          <Text color={colorScheme.sectionSeeMore} size={TextSize.LARGE}>
+            See more on{" "}
+            <Link href={SiteRoute.SKILLS} color={colorScheme.sectionSeeLink}>
+              Skills →
+            </Link>
+          </Text>
+        </SectionContainer>
+      </SubPatternContainer>
 
       <Footer />
     </>
