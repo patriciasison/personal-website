@@ -16,7 +16,7 @@ import {
 } from "../bits"
 import theme from "../bits/theme"
 import { ColorMode } from "../config"
-import { ViewportContext } from "../providers"
+import { Viewport, ViewportContext } from "../providers"
 
 const AboutMeColor = {
   [ColorMode.LIGHT]: {
@@ -34,32 +34,32 @@ const SubContainer = styled.div`
   justify-content: center;
   margin-bottom: calc(${theme.spacing.xxlarge} + ${theme.size.large});
 
-  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     flex-direction: row;
     height: calc(
       100vh - 2 * (${theme.spacing.xxlarge} + ${theme.size.xxsmall})
     );
     margin-bottom: calc(${theme.spacing.xxlarge} + ${theme.size.xxsmall});
     min-height: calc(
-      ${theme.breakpoint.tablet.minHeight}px - 2 *
+      ${theme.breakpoint[Viewport.TABLET].minHeight}px - 2 *
         (2 * ${theme.spacing.large} + ${theme.size.xxxsmall})
     );
   }
 
-  @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP].media}px) {
     height: calc(
       100vh - 2 * (${theme.spacing.xxlarge} + ${theme.size.xxxsmall})
     );
     margin-bottom: calc(${theme.spacing.xxlarge} + ${theme.size.xxxsmall});
     min-height: calc(
-      ${theme.breakpoint.laptop.minHeight}px - 2 *
+      ${theme.breakpoint[Viewport.LAPTOP].minHeight}px - 2 *
         (2 * ${theme.spacing.large} + ${theme.size.xxxsmall})
     );
   }
 
-  @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.DESKTOP].media}px) {
     min-height: calc(
-      ${theme.breakpoint.desktop.minHeight}px - 2 *
+      ${theme.breakpoint[Viewport.DESKTOP].minHeight}px - 2 *
         (2 * ${theme.spacing.large} + ${theme.size.xxxsmall})
     );
   }
@@ -74,7 +74,7 @@ const ImageContainer = styled.div`
     margin-bottom: ${theme.spacing.xxlarge};
   }
 
-  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     width: 50%;
 
     &:first-child {
@@ -91,11 +91,11 @@ const ImageContainer = styled.div`
 const Image = styled.img`
   width: 75%;
 
-  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     width: 100%;
   }
 
-  @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP].media}px) {
     width: 85%;
   }
 `
@@ -113,7 +113,7 @@ const TextContainer = styled.div`
     text-align: center;
   }
 
-  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     align-items: flex-start;
     width: 50%;
 
@@ -130,7 +130,7 @@ const TextContainer = styled.div`
     }
   }
 
-  @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP].media}px) {
     padding-left: 10rem;
 
     &:last-child {

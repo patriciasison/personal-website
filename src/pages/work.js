@@ -43,7 +43,7 @@ const CompanySection = styled.div`
   margin-top: ${theme.spacing.xxxlarge};
   width: 30%;
 
-  @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP].media}px) {
     width: 35%;
   }
 `
@@ -105,7 +105,7 @@ const Timeline = styled.div`
   flex-direction: column;
   padding-right: ${theme.spacing.xxlarge};
 
-  @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP].media}px) {
     padding-right: ${theme.spacing.xxxlarge};
   }
 `
@@ -119,13 +119,13 @@ const TimelineCircle = styled.div`
   height: 10px;
   width: 10px;
 
-  @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP].media}px) {
     border: 4px ${({ background }) => background} solid;
     height: 9px;
     width: 9px;
   }
 
-  @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.DESKTOP].media}px) {
     height: 12px;
     width: 12px;
   }
@@ -136,11 +136,11 @@ const TimelineLine = styled.div`
   height: 96px;
   width: 4px;
 
-  @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP].media}px) {
     height: 74px;
   }
 
-  @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.DESKTOP].media}px) {
     height: 94px;
   }
 `
@@ -150,11 +150,11 @@ const Window = styled.div`
   flex-direction: column;
   width: 100%;
 
-  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     width: 70%;
   }
 
-  @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP].media}px) {
     width: 65%;
   }
 `
@@ -177,7 +177,7 @@ const TitleBarButton = styled.div`
     margin-right: ${theme.spacing.xsmall};
   }
 
-  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     height: 13px;
     width: 13px;
   }
@@ -194,7 +194,7 @@ const Content = styled.div`
     ${theme.spacing.mid};
   width: 100%;
 
-  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     height: 75vh;
     min-height: 540px;
     padding: ${theme.spacing.large} ${theme.spacing.xxxlarge}

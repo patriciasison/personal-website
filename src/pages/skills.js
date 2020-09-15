@@ -42,9 +42,22 @@ const SkillsColor = {
 }
 
 const cardSize = {
-  mobile: 100,
-  tablet: 90,
-  laptop: 120,
+  [Viewport.MOBILE]: {
+    height: "100px",
+    width: "100px",
+  },
+  [Viewport.TABLET]: {
+    height: "90px",
+    width: "90px",
+  },
+  [Viewport.LAPTOP]: {
+    height: "120px",
+    width: "120px",
+  },
+  [Viewport.DESKTOP]: {
+    height: "120px",
+    width: "120px",
+  },
 }
 
 const SkillGroup = styled.div`
@@ -56,7 +69,7 @@ const SkillGroup = styled.div`
     margin-bottom: ${theme.spacing.xxlarge};
   }
 
-  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     justify-content: flex-start;
   }
 `
@@ -67,21 +80,24 @@ const ImageContainer = styled.div`
   justify-content: center;
   width: 100%;
 
-  @media screen and (max-width: ${theme.breakpoint.tablet.media}px) {
+  @media screen and (max-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     height: calc(
-      ${cardSize.mobile}px - ${theme.size.xsmall} - ${theme.spacing.small}
+      ${cardSize[Viewport.MOBILE].height} - ${theme.size.xsmall} -
+        ${theme.spacing.small}
     );
   }
 
-  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     height: calc(
-      ${cardSize.tablet}px - ${theme.size.xsmall} - ${theme.spacing.small}
+      ${cardSize[Viewport.TABLET].height} - ${theme.size.xsmall} -
+        ${theme.spacing.small}
     );
   }
 
-  @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP].media}px) {
     height: calc(
-      ${cardSize.laptop}px - ${theme.size.xsmall} - ${theme.spacing.small}
+      ${cardSize[Viewport.LAPTOP].height} - ${theme.size.xsmall} -
+        ${theme.spacing.small}
     );
   }
 `
@@ -179,20 +195,8 @@ const Skills = ({ location }) => {
                   key={`card-${skill.name}`}
                   background={colorScheme.card}
                   padding={theme.spacing.xlarge}
-                  height={
-                    viewport === Viewport.MOBILE
-                      ? `${cardSize.mobile}px`
-                      : viewport === Viewport.TABLET
-                      ? `${cardSize.tablet}px`
-                      : `${cardSize.laptop}px`
-                  }
-                  width={
-                    viewport === Viewport.MOBILE
-                      ? `${cardSize.mobile}px`
-                      : viewport === Viewport.TABLET
-                      ? `${cardSize.tablet}px`
-                      : `${cardSize.laptop}px`
-                  }
+                  height={cardSize[viewport].height}
+                  width={cardSize[viewport].width}
                   marginBottom={
                     viewport === Viewport.MOBILE ? theme.spacing.large : "0"
                   }

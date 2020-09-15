@@ -33,9 +33,22 @@ const ContactColor = {
 }
 
 const cardSize = {
-  mobile: 110,
-  tablet: 120,
-  laptop: 130,
+  [Viewport.MOBILE]: {
+    height: "110px",
+    width: "110px",
+  },
+  [Viewport.TABLET]: {
+    height: "120px",
+    width: "120px",
+  },
+  [Viewport.LAPTOP]: {
+    height: "130px",
+    width: "130px",
+  },
+  [Viewport.DESKTOP]: {
+    height: "130px",
+    width: "130px",
+  },
 }
 
 const Wrapper = styled.div`
@@ -44,26 +57,27 @@ const Wrapper = styled.div`
   height: 100%;
   justify-content: flex-end;
   left: 0;
-  min-height: ${theme.breakpoint.mobile.minHeight}px;
+  min-height: ${theme.breakpoint[Viewport.MOBILE].minHeight}px;
   position: absolute;
   top: 0;
   width: 100%;
   z-index: -1;
 
-  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
-    min-height: ${theme.breakpoint.tablet.minHeight}px;
+  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
+    min-height: ${theme.breakpoint[Viewport.TABLET].minHeight}px;
   }
 
-  @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP].media}px) {
     min-height: calc(
-      ${theme.breakpoint.laptop.minHeight}px + 3 * ${theme.spacing.xxxxlarge}
+      ${theme.breakpoint[Viewport.LAPTOP].minHeight}px + 3 *
+        ${theme.spacing.xxxxlarge}
     );
   }
 
-  @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.DESKTOP].media}px) {
     min-height: calc(
-      ${theme.breakpoint.desktop.minHeight}px + 4 * ${theme.spacing.xxxxlarge} +
-        ${theme.spacing.large}
+      ${theme.breakpoint[Viewport.DESKTOP].minHeight}px + 4 *
+        ${theme.spacing.xxxxlarge} + ${theme.spacing.large}
     );
   }
 `
@@ -72,12 +86,12 @@ const PatternContainer = styled.div`
   background: url(${patternMobile}) bottom center repeat-x;
   height: 150px;
 
-  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     background: url(${patternTablet}) bottom left repeat-x;
     height: 200px;
   }
 
-  @media screen and (min-width: ${theme.breakpoint.desktop.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.DESKTOP].media}px) {
     background: url(${pattern}) bottom center repeat-x;
     height: 290px;
   }
@@ -92,7 +106,7 @@ const HeadingContainer = styled.div`
     text-align: center;
   }
 
-  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     & > span {
       line-height: normal;
     }
@@ -108,7 +122,7 @@ const ContactGroup = styled.div`
     margin-right: ${theme.spacing.large};
   }
 
-  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     & > div:not(:last-child) {
       margin-right: ${theme.spacing.large};
     }
@@ -120,21 +134,24 @@ const ImageContainer = styled.div`
   justify-content: center;
   width: 100%;
 
-  @media screen and (max-width: ${theme.breakpoint.tablet.media}px) {
+  @media screen and (max-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     height: calc(
-      ${cardSize.mobile}px - ${theme.size.xsmall} - ${theme.spacing.small}
+      ${cardSize[Viewport.MOBILE].height} - ${theme.size.xsmall} -
+        ${theme.spacing.small}
     );
   }
 
-  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     height: calc(
-      ${cardSize.tablet}px - ${theme.size.xsmall} - ${theme.spacing.small}
+      ${cardSize[Viewport.TABLET].height} - ${theme.size.xsmall} -
+        ${theme.spacing.small}
     );
   }
 
-  @media screen and (min-width: ${theme.breakpoint.laptop.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP].media}px) {
     height: calc(
-      ${cardSize.laptop}px - ${theme.size.small} - ${theme.spacing.large}
+      ${cardSize[Viewport.LAPTOP].height} - ${theme.size.small} -
+        ${theme.spacing.large}
     );
   }
 `
@@ -142,7 +159,7 @@ const ImageContainer = styled.div`
 const Image = styled.img`
   height: 72%;
 
-  @media screen and (min-width: ${theme.breakpoint.tablet.media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     height: 75%;
   }
 `
@@ -366,20 +383,8 @@ const Contact = ({ location }) => {
                   ? theme.spacing.xlarge
                   : theme.spacing.xxxlarge
               }
-              height={
-                viewport === Viewport.MOBILE
-                  ? `${cardSize.mobile}px`
-                  : viewport === Viewport.TABLET
-                  ? `${cardSize.tablet}px`
-                  : `${cardSize.laptop}px`
-              }
-              width={
-                viewport === Viewport.MOBILE
-                  ? `${cardSize.mobile}px`
-                  : viewport === Viewport.TABLET
-                  ? `${cardSize.tablet}px`
-                  : `${cardSize.laptop}px`
-              }
+              height={cardSize[viewport].height}
+              width={cardSize[viewport].width}
               marginBottom={
                 viewport === Viewport.MOBILE ? theme.spacing.large : "0"
               }
