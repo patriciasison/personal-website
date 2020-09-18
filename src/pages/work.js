@@ -223,6 +223,9 @@ const Icon = styled.div`
 
 const Work = ({ location }) => {
   const colorScheme = WorkColor[ColorMode.LIGHT]
+  const { viewport, initialLoad } = useContext(ViewportContext)
+  const [pageLoad, setPageLoad] = useState(false)
+  const isMobileView = viewport === Viewport.MOBILE
 
   const companies = [
     {
@@ -291,6 +294,7 @@ const Work = ({ location }) => {
   }
 
   const [selectedCompany, setSelectedCompany] = useState(companies[0])
+
   const handleCompanyClick = company => {
     setSelectedCompany(company)
   }
@@ -306,16 +310,31 @@ const Work = ({ location }) => {
     setSelectedCompany(companies[newCompanyIndex % companies.length])
   }
 
-  const { viewport, initialLoad } = useContext(ViewportContext)
-  const isMobileView = viewport === Viewport.MOBILE
-
   if (initialLoad) {
     return <></>
   }
 
+  if (pageLoad) {
+    return (
+      <Navbar
+        viewport={viewport}
+        pathname={location.pathname}
+        onClick={onPageLoad => {
+          setPageLoad(onPageLoad)
+        }}
+      />
+    )
+  }
+
   return (
     <>
-      <Navbar viewport={viewport} pathname={location.pathname} />
+      <Navbar
+        viewport={viewport}
+        pathname={location.pathname}
+        onClick={onPageLoad => {
+          setPageLoad(onPageLoad)
+        }}
+      />
       <Container
         direction={
           isMobileView

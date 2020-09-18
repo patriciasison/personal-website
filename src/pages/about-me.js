@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import styled from "styled-components"
 import vectorCodeQuality from "../assets/vector-code-quality.png"
 import vectorFrontend from "../assets/vector-frontend.png"
@@ -141,15 +141,34 @@ const TextContainer = styled.div`
 
 const AboutMe = ({ location }) => {
   const colorScheme = AboutMeColor[ColorMode.LIGHT]
+  const [pageLoad, setPageLoad] = useState(false)
   const { viewport, initialLoad } = useContext(ViewportContext)
 
   if (initialLoad) {
     return <></>
   }
 
+  if (pageLoad) {
+    return (
+      <Navbar
+        viewport={viewport}
+        pathname={location.pathname}
+        onClick={onPageLoad => {
+          setPageLoad(onPageLoad)
+        }}
+      />
+    )
+  }
+
   return (
     <>
-      <Navbar viewport={viewport} pathname={location.pathname} />
+      <Navbar
+        viewport={viewport}
+        pathname={location.pathname}
+        onClick={onPageLoad => {
+          setPageLoad(onPageLoad)
+        }}
+      />
       <Container>
         <SubContainer>
           <ImageContainer>

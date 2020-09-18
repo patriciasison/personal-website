@@ -432,6 +432,8 @@ const Home = ({ location }) => {
   const colorScheme = HomeColor[ColorMode.LIGHT]
 
   const [navBgEnabled, setNavBgEnabled] = useState(false)
+  const [pageLoad, setPageLoad] = useState(false)
+
   const { viewport, initialLoad } = useContext(ViewportContext)
   const isMobileView = viewport === Viewport.MOBILE
 
@@ -478,14 +480,29 @@ const Home = ({ location }) => {
     return <></>
   }
 
+  if (pageLoad) {
+    return (
+      <Navbar
+        viewport={viewport}
+        pathname={location.pathname}
+        onClick={onPageLoad => {
+          setPageLoad(onPageLoad)
+        }}
+      />
+    )
+  }
+
   return (
     <>
-      <PatternContainer background={colorScheme.patternBg} />
       <Navbar
         viewport={viewport}
         pathname={location.pathname}
         backgroundEnabled={navBgEnabled}
+        onClick={onPageLoad => {
+          setPageLoad(onPageLoad)
+        }}
       />
+      <PatternContainer background={colorScheme.patternBg} />
 
       <MainContainer>
         {isMobileView && (

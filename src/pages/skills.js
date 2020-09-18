@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import styled from "styled-components"
 import logoAngular from "../assets/logo-angular.png"
 import logoApollo from "../assets/logo-apollo.png"
@@ -110,6 +110,7 @@ const Image = styled.img`
 const Skills = ({ location }) => {
   const colorScheme = SkillsColor[ColorMode.LIGHT]
   const { viewport, initialLoad } = useContext(ViewportContext)
+  const [pageLoad, setPageLoad] = useState(false)
 
   const categories = [
     {
@@ -161,9 +162,27 @@ const Skills = ({ location }) => {
     return <></>
   }
 
+  if (pageLoad) {
+    return (
+      <Navbar
+        viewport={viewport}
+        pathname={location.pathname}
+        onClick={onPageLoad => {
+          setPageLoad(onPageLoad)
+        }}
+      />
+    )
+  }
+
   return (
     <>
-      <Navbar viewport={viewport} pathname={location.pathname} />
+      <Navbar
+        viewport={viewport}
+        pathname={location.pathname}
+        onClick={onPageLoad => {
+          setPageLoad(onPageLoad)
+        }}
+      />
       <Container
         align={
           viewport === Viewport.MOBILE

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Helmet from "react-helmet"
 import EmailIcon from "@material-ui/icons/Email"
 import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined"
@@ -126,15 +126,31 @@ const Navbar = ({
   viewport,
   backgroundEnabled,
   colorMode,
+  onClick,
 }) => {
   const colorScheme = NavbarColor[colorMode]
-  const activeNavItemId = pathname === "/" ? SiteRoute.HOME : pathname
+  const [activeNavItemId, setActiveNavItemId] = useState(
+    pathname === "/" ? SiteRoute.HOME : pathname
+  )
+  const [pageLoad, setPageLoad] = useState(false)
+
   const showIcons = viewport === Viewport.MOBILE
 
   const formatPathnameToTitle = string => {
     const title = string.replace(/\//g, "").replace(/-/g, " ")
     return title[0].toUpperCase() + title.substring(1)
   }
+
+  useEffect(() => {
+    setPageLoad(
+      (pathname === "/" && activeNavItemId !== SiteRoute.HOME) ||
+        (pathname !== "/" && pathname !== activeNavItemId)
+    )
+  }, [pathname, activeNavItemId, setPageLoad])
+
+  useEffect(() => {
+    onClick(pageLoad)
+  }, [onClick, pageLoad])
 
   return (
     <>
@@ -156,6 +172,9 @@ const Navbar = ({
               active={(activeNavItemId === navItem.id) + ""}
               color={colorScheme.navItemColor}
               highlight={colorScheme.navItemHighlight}
+              onClick={() => {
+                setActiveNavItemId(navItem.id)
+              }}
             >
               {showIcons
                 ? activeNavItemId === navItem.id

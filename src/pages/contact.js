@@ -1,4 +1,4 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import styled from "styled-components"
 import logoGmail from "../assets/logo-gmail.png"
 import logoGithub from "../assets/logo-github.png"
@@ -172,6 +172,7 @@ const TextContainer = styled.div`
 
 const Contact = ({ location }) => {
   const colorScheme = ContactColor[ColorMode.LIGHT]
+  const [pageLoad, setPageLoad] = useState(false)
   const { viewport, initialLoad } = useContext(ViewportContext)
 
   const contactDetails = [
@@ -277,9 +278,27 @@ const Contact = ({ location }) => {
     return <></>
   }
 
+  if (pageLoad) {
+    return (
+      <Navbar
+        viewport={viewport}
+        pathname={location.pathname}
+        onClick={onPageLoad => {
+          setPageLoad(onPageLoad)
+        }}
+      />
+    )
+  }
+
   return (
     <>
-      <Navbar pathname={location.pathname} viewport={viewport} />
+      <Navbar
+        pathname={location.pathname}
+        viewport={viewport}
+        onClick={onPageLoad => {
+          setPageLoad(onPageLoad)
+        }}
+      />
       <Container
         align={ContainerAlign.CENTER}
         marginTop={
