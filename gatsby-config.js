@@ -12,6 +12,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-force-trailing-slashes`,
+    `gatsby-plugin-nprogress`,
     `gatsby-plugin-styled-components`,
   ],
 }
