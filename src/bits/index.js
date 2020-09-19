@@ -14,6 +14,7 @@ export {
 } from "./heading"
 export { default as IconButton } from "./icon-button"
 export { default as Link, LinkWeight } from "./link"
+export { default as Loading } from "./loading"
 export { default as Navbar } from "./navbar"
 export {
   default as Text,

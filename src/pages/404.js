@@ -1,13 +1,14 @@
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import styled from "styled-components"
 import vector404 from "../assets/vector-404.png"
-import { Footer, Link, Navbar, Text, TextSize } from "../bits"
+import { Footer, Link, Loading, Navbar, Text, TextSize } from "../bits"
 import theme from "../bits/theme"
 import { ColorMode, SiteRoute } from "../config"
 import { Viewport, ViewportContext } from "../providers"
 
 const NotFoundColor = {
   [ColorMode.LIGHT]: {
+    loading: theme.color.gray.light,
     text: theme.color.black.light,
     link: theme.color.blue.norm,
   },
@@ -20,6 +21,8 @@ const MainContainer = styled.div`
   justify-content: center;
   height: 100vh;
   margin: 0 auto;
+  max-height: ${theme.breakpoint[Viewport.MOBILE].maxHeight}px;
+  min-height: ${theme.breakpoint[Viewport.MOBILE].minHeight}px;
   width: 100%;
 
   @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
@@ -50,14 +53,36 @@ const Image = styled.img`
 const NotFound = ({ location }) => {
   const colorScheme = NotFoundColor[ColorMode.LIGHT]
   const { viewport, initialLoad } = useContext(ViewportContext)
+  const [pageLoad, setPageLoad] = useState(false)
 
   if (initialLoad) {
     return <></>
   }
 
+  if (pageLoad) {
+    return (
+      <>
+        <Navbar
+          viewport={viewport}
+          pathname={location.pathname}
+          onClick={onPageLoad => {
+            setPageLoad(onPageLoad)
+          }}
+        />
+        <Loading color={colorScheme.loading} />
+      </>
+    )
+  }
+
   return (
     <>
-      <Navbar viewport={viewport} pathname={location.pathname} />
+      <Navbar
+        viewport={viewport}
+        pathname={location.pathname}
+        onClick={onPageLoad => {
+          setPageLoad(onPageLoad)
+        }}
+      />
 
       <MainContainer>
         <Image src={vector404} />

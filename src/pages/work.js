@@ -8,6 +8,7 @@ import {
   Container,
   ContainerDirection,
   Footer,
+  Loading,
   Navbar,
   Text,
   TextSize,
@@ -20,6 +21,7 @@ import { Viewport, ViewportContext } from "../providers"
 
 const WorkColor = {
   [ColorMode.LIGHT]: {
+    loading: theme.color.gray.light,
     company: theme.color.gray.dark,
     selectedCompany: theme.color.blue.xdark,
     position: theme.color.black.xlight,
@@ -316,13 +318,16 @@ const Work = ({ location }) => {
 
   if (pageLoad) {
     return (
-      <Navbar
-        viewport={viewport}
-        pathname={location.pathname}
-        onClick={onPageLoad => {
-          setPageLoad(onPageLoad)
-        }}
-      />
+      <>
+        <Navbar
+          viewport={viewport}
+          pathname={location.pathname}
+          onClick={onPageLoad => {
+            setPageLoad(onPageLoad)
+          }}
+        />
+        <Loading color={colorScheme.loading} />
+      </>
     )
   }
 

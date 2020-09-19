@@ -26,6 +26,7 @@ import {
   HeadingTransform,
   HeadingWeight,
   Link,
+  Loading,
   Navbar,
   Text,
   TextSize,
@@ -39,6 +40,7 @@ import { Viewport, ViewportContext } from "../providers"
 
 const HomeColor = {
   [ColorMode.LIGHT]: {
+    loading: theme.color.gray.light,
     patternBg: `linear-gradient(${theme.color.blue.norm}, ${theme.color.blue.light})`,
     firstName: theme.color.white.norm,
     lastName: theme.color.white.norm,
@@ -482,13 +484,16 @@ const Home = ({ location }) => {
 
   if (pageLoad) {
     return (
-      <Navbar
-        viewport={viewport}
-        pathname={location.pathname}
-        onClick={onPageLoad => {
-          setPageLoad(onPageLoad)
-        }}
-      />
+      <>
+        <Navbar
+          viewport={viewport}
+          pathname={location.pathname}
+          onClick={onPageLoad => {
+            setPageLoad(onPageLoad)
+          }}
+        />
+        <Loading color={colorScheme.loading} />
+      </>
     )
   }
 

@@ -12,6 +12,7 @@ import {
   Heading,
   HeadingSize,
   HeadingWeight,
+  Loading,
   Navbar,
 } from "../bits"
 import theme from "../bits/theme"
@@ -20,6 +21,7 @@ import { Viewport, ViewportContext } from "../providers"
 
 const AboutMeColor = {
   [ColorMode.LIGHT]: {
+    loading: theme.color.gray.light,
     text: theme.color.black.light,
     highlightText: theme.color.blue.xdark,
     subText: theme.color.black.xlight,
@@ -150,13 +152,16 @@ const AboutMe = ({ location }) => {
 
   if (pageLoad) {
     return (
-      <Navbar
-        viewport={viewport}
-        pathname={location.pathname}
-        onClick={onPageLoad => {
-          setPageLoad(onPageLoad)
-        }}
-      />
+      <>
+        <Navbar
+          viewport={viewport}
+          pathname={location.pathname}
+          onClick={onPageLoad => {
+            setPageLoad(onPageLoad)
+          }}
+        />
+        <Loading color={colorScheme.loading} />
+      </>
     )
   }
 

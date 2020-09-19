@@ -23,6 +23,7 @@ import {
   Container,
   ContainerAlign,
   Footer,
+  Loading,
   Navbar,
   Text,
   TextSize,
@@ -35,6 +36,7 @@ import { Viewport, ViewportContext } from "../providers"
 
 const SkillsColor = {
   [ColorMode.LIGHT]: {
+    loading: theme.color.gray.light,
     category: theme.color.gray.dark,
     card: theme.color.white.norm,
     skill: theme.color.black.light,
@@ -164,13 +166,16 @@ const Skills = ({ location }) => {
 
   if (pageLoad) {
     return (
-      <Navbar
-        viewport={viewport}
-        pathname={location.pathname}
-        onClick={onPageLoad => {
-          setPageLoad(onPageLoad)
-        }}
-      />
+      <>
+        <Navbar
+          viewport={viewport}
+          pathname={location.pathname}
+          onClick={onPageLoad => {
+            setPageLoad(onPageLoad)
+          }}
+        />
+        <Loading color={colorScheme.loading} />
+      </>
     )
   }
 

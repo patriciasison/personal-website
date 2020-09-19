@@ -15,6 +15,7 @@ import {
   Heading,
   HeadingSize,
   HeadingWeight,
+  Loading,
   Navbar,
   Text,
   TextSize,
@@ -26,6 +27,7 @@ import { Viewport, ViewportContext } from "../providers"
 
 const ContactColor = {
   [ColorMode.LIGHT]: {
+    loading: theme.color.gray.light,
     heading: theme.color.black.xlight,
     card: theme.color.white.norm,
     contactDetail: theme.color.black.light,
@@ -57,7 +59,10 @@ const Wrapper = styled.div`
   height: 100%;
   justify-content: flex-end;
   left: 0;
-  min-height: ${theme.breakpoint[Viewport.MOBILE].minHeight}px;
+  min-height: calc(
+    ${theme.breakpoint[Viewport.MOBILE].minHeight}px + 3 *
+      ${theme.spacing.xxxlarge}
+  );
   position: absolute;
   top: 0;
   width: 100%;
@@ -76,7 +81,7 @@ const Wrapper = styled.div`
 
   @media screen and (min-width: ${theme.breakpoint[Viewport.DESKTOP].media}px) {
     min-height: calc(
-      ${theme.breakpoint[Viewport.DESKTOP].minHeight}px + 4 *
+      ${theme.breakpoint[Viewport.DESKTOP].minHeight}px + 2 *
         ${theme.spacing.xxxxlarge} + ${theme.spacing.large}
     );
   }
@@ -280,13 +285,16 @@ const Contact = ({ location }) => {
 
   if (pageLoad) {
     return (
-      <Navbar
-        viewport={viewport}
-        pathname={location.pathname}
-        onClick={onPageLoad => {
-          setPageLoad(onPageLoad)
-        }}
-      />
+      <>
+        <Navbar
+          viewport={viewport}
+          pathname={location.pathname}
+          onClick={onPageLoad => {
+            setPageLoad(onPageLoad)
+          }}
+        />
+        <Loading color={colorScheme.loading} />
+      </>
     )
   }
 
