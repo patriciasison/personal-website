@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import Helmet from "react-helmet"
+import { Helmet } from "react-helmet"
 import EmailIcon from "@material-ui/icons/Email"
 import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined"
 import HomeIcon from "@material-ui/icons/Home"

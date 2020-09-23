@@ -1,5 +1,5 @@
 import React from "react"
-import Helmet from "react-helmet"
+import { Helmet } from "react-helmet"
 import { ThemeProvider } from "styled-components"
 import "./global-styles.css"
 import favicon from "./src/assets/favicon.png"
