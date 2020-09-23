@@ -3,6 +3,7 @@ import Helmet from "react-helmet"
 import { ThemeProvider } from "styled-components"
 import "./global-styles.css"
 import favicon from "./src/assets/favicon.png"
+import thumbnail from "./src/assets/vector-web-development.png"
 import theme from "./src/bits/theme"
 import { SITE_NAME } from "./src/config"
 import { ViewportProvider } from "./src/providers"
@@ -26,10 +27,7 @@ export const wrapRootElement = ({ element }) => (
         property="og:description"
         content="This personal website is made by Patricia herself, an experienced full-stack web developer."
       />
-      <meta
-        property="og:image"
-        content="/src/assets/vector-web-development.png"
-      />
+      <meta property="og:image" content={thumbnail} />
 
       <meta property="twitter:card" content="summary_large_image" />
       <meta property="twitter:url" content="https://patriciasison.me/" />
@@ -41,10 +39,7 @@ export const wrapRootElement = ({ element }) => (
         property="twitter:description"
         content="This personal website is made by Patricia herself, an experienced full-stack web developer."
       />
-      <meta
-        property="twitter:image"
-        content="/src/assets/vector-web-development.png"
-      />
+      <meta property="twitter:image" content={thumbnail} />
     </Helmet>
     <ThemeProvider theme={theme}>
       <ViewportProvider>{element}</ViewportProvider>
