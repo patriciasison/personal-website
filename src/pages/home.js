@@ -46,7 +46,8 @@ const HomeColor = {
     tagline: theme.color.gray.dark,
     contactMeBg: `linear-gradient(90deg, ${theme.color.blue.dark}, ${theme.color.purple.norm})`,
     contactMeFg: theme.color.white.norm,
-    introText: theme.color.black.light,
+    introTitle: theme.color.black.light,
+    introText: theme.color.black.xlight,
     highlightText: theme.color.blue.xdark,
     sectionHeading: theme.color.black.light,
     sectionSeeMore: theme.color.gray.dark,
@@ -646,7 +647,7 @@ const Home = ({ location }) => {
         <SubContainer>
           <SubTextContainer>
             <Heading
-              color={colorScheme.introText}
+              color={colorScheme.introTitle}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
               marginBottom={theme.spacing.mid}
