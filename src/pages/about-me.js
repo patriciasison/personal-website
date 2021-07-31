@@ -215,7 +215,7 @@ const AboutMe = ({ location }) => {
               weight={HeadingWeight.MEDIUM}
             >
               tech industry for{" "}
-              <Heading color={colorScheme.highlightText}>4 years</Heading>.
+              <Heading color={colorScheme.highlightText}>5 years</Heading>.
             </Heading>
           </TextContainer>
         </SubContainer>
