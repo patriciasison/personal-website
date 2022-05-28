@@ -3,9 +3,9 @@ import styled from "styled-components"
 import vectorCodeQuality from "../assets/vector-code-quality.png"
 import vectorFrontend from "../assets/vector-frontend.png"
 import vectorImmersed from "../assets/vector-immersed.png"
-import vectorMeetup from "../assets/vector-meetup.png"
 import vectorSoftwareEngineer from "../assets/vector-software-engineer.png"
 import vectorWebDevelopment from "../assets/vector-web-development.png"
+import vectorWireframe from "../assets/vector-wireframe.png"
 import {
   Container,
   Footer,
@@ -215,7 +215,7 @@ const AboutMe = ({ location }) => {
               weight={HeadingWeight.MEDIUM}
             >
               tech industry for{" "}
-              <Heading color={colorScheme.highlightText}>5 years</Heading>.
+              <Heading color={colorScheme.highlightText}>6 years</Heading>.
             </Heading>
           </TextContainer>
         </SubContainer>
@@ -274,14 +274,22 @@ const AboutMe = ({ location }) => {
               size={HeadingSize.SMALL}
               weight={HeadingWeight.MEDIUM}
             >
-              that helps ensure and promote
+              that ensures{" "}
+              <Heading
+                color={colorScheme.highlightText}
+                size={HeadingSize.SMALL}
+                weight={HeadingWeight.MEDIUM}
+              >
+                modularity and
+              </Heading>
             </Heading>
             <Heading
               color={colorScheme.highlightText}
               size={HeadingSize.SMALL}
               weight={HeadingWeight.MEDIUM}
             >
-              good UI/UX<Heading color={colorScheme.text}>.</Heading>
+              extensibility{" "}
+              <Heading color={colorScheme.subText}> of components.</Heading>
             </Heading>
           </TextContainer>
         </SubContainer>
@@ -293,18 +301,15 @@ const AboutMe = ({ location }) => {
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
-              Puts great emphasis
+              Maintains, enforces, and
             </Heading>
             <Heading
               color={colorScheme.text}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
-              on the{" "}
-              <Heading color={colorScheme.highlightText}>
-                quality of code
-              </Heading>
-              .
+              advocates for{" "}
+              <Heading color={colorScheme.highlightText}>clean code</Heading>.
             </Heading>
           </TextContainer>
           <ImageContainer>
@@ -314,7 +319,7 @@ const AboutMe = ({ location }) => {
 
         <SubContainer>
           <ImageContainer>
-            <Image src={vectorImmersed} />
+            <Image src={vectorWireframe} />
           </ImageContainer>
           <TextContainer>
             <Heading
@@ -322,14 +327,58 @@ const AboutMe = ({ location }) => {
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
-              Has been immersed
+              Skilled in replicating{" "}
+              <Heading color={colorScheme.highlightText}>wire-</Heading>
+            </Heading>
+            <Heading
+              color={colorScheme.text}
+              size={HeadingSize.XLARGE}
+              weight={HeadingWeight.MEDIUM}
+              marginBottom={theme.spacing.mid}
+            >
+              <Heading color={colorScheme.highlightText}>frames</Heading> into
+              web pages;
+            </Heading>
+            <Heading
+              color={colorScheme.subText}
+              size={HeadingSize.SMALL}
+              weight={HeadingWeight.MEDIUM}
+            >
+              ensures and promotes{" "}
+              <Heading
+                color={colorScheme.highlightText}
+                size={HeadingSize.SMALL}
+                weight={HeadingWeight.MEDIUM}
+              >
+                good UI/UX
+              </Heading>
+              .
+            </Heading>
+          </TextContainer>
+        </SubContainer>
+
+        <SubContainer>
+          <TextContainer>
+            <Heading
+              color={colorScheme.text}
+              size={HeadingSize.XLARGE}
+              weight={HeadingWeight.MEDIUM}
+            >
+              Has been immersed in
             </Heading>
             <Heading
               color={colorScheme.highlightText}
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
-              <Heading color={colorScheme.text}>in </Heading>
+              Agile methodologies
+              <Heading color={colorScheme.text}>, </Heading>
+            </Heading>
+            <Heading
+              color={colorScheme.highlightText}
+              size={HeadingSize.XLARGE}
+              weight={HeadingWeight.MEDIUM}
+            >
               business analysis
               <Heading color={colorScheme.text}>, </Heading>
             </Heading>
@@ -338,45 +387,11 @@ const AboutMe = ({ location }) => {
               size={HeadingSize.XLARGE}
               weight={HeadingWeight.MEDIUM}
             >
-              product planning
-              <Heading color={colorScheme.text}>, </Heading>
-            </Heading>
-            <Heading
-              color={colorScheme.highlightText}
-              size={HeadingSize.XLARGE}
-              weight={HeadingWeight.MEDIUM}
-            >
-              QA testing<Heading color={colorScheme.text}>.</Heading>
-            </Heading>
-          </TextContainer>
-        </SubContainer>
-
-        <SubContainer>
-          <TextContainer>
-            <Heading
-              color={colorScheme.highlightText}
-              size={HeadingSize.XLARGE}
-              weight={HeadingWeight.MEDIUM}
-            >
-              Attends tech meetups
-            </Heading>
-            <Heading
-              color={colorScheme.highlightText}
-              size={HeadingSize.XLARGE}
-              weight={HeadingWeight.MEDIUM}
-            >
-              and events <Heading color={colorScheme.text}>for new</Heading>
-            </Heading>
-            <Heading
-              color={colorScheme.text}
-              size={HeadingSize.XLARGE}
-              weight={HeadingWeight.MEDIUM}
-            >
-              learnings and insights.
+              unit testing<Heading color={colorScheme.text}>.</Heading>
             </Heading>
           </TextContainer>
           <ImageContainer>
-            <Image src={vectorMeetup} />
+            <Image src={vectorImmersed} />
           </ImageContainer>
         </SubContainer>
       </Container>
