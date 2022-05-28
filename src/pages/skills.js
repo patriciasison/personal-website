@@ -1,22 +1,28 @@
 import React, { useContext, useState } from "react"
 import styled from "styled-components"
 import logoAngular from "../assets/logo-angular.png"
-import logoApollo from "../assets/logo-apollo.png"
 import logoC from "../assets/logo-c.png"
 import logoCSS from "../assets/logo-css.png"
+import logoEmotion from "../assets/logo-emotion.png"
+import logoGatsby from "../assets/logo-gatsby.png"
 import logoGraphQL from "../assets/logo-graphql.png"
 import logoGithub from "../assets/logo-github.png"
 import logoHTML from "../assets/logo-html.png"
+import logoJasmine from "../assets/logo-jasmine.png"
 import logoJava from "../assets/logo-java.png"
 import logoJavascript from "../assets/logo-javascript.png"
 import logoLinux from "../assets/logo-linux.png"
 import logoMongoDB from "../assets/logo-mongodb.png"
 import logoMySQL from "../assets/logo-mysql.png"
+import logoNextjs from "../assets/logo-nextjs.png"
 import logoPostgreSQL from "../assets/logo-postgresql.png"
 import logoPHP from "../assets/logo-php.png"
 import logoPython from "../assets/logo-python.png"
 import logoReact from "../assets/logo-react.png"
+import logoRedux from "../assets/logo-redux.png"
+import logoRxjs from "../assets/logo-rxjs.png"
 import logoSass from "../assets/logo-sass.png"
+import logoStyledComp from "../assets/logo-styled-components.png"
 import logoTypescript from "../assets/logo-typescript.png"
 import {
   Card,
@@ -119,9 +125,15 @@ const Skills = ({ location }) => {
       name: "Web Technologies",
       skills: [
         { name: "React", logo: logoReact },
+        { name: "Next.js", logo: logoNextjs },
+        { name: "Gatsby", logo: logoGatsby },
+        { name: "Redux", logo: logoRedux },
+        { name: "RxJS", logo: logoRxjs },
         { name: "Angular", logo: logoAngular },
-        { name: "Apollo", logo: logoApollo },
         { name: "GraphQL", logo: logoGraphQL },
+        { name: "Styled Comp.", logo: logoStyledComp },
+        { name: "Emotion", logo: logoEmotion },
+        { name: "Jasmine", logo: logoJasmine },
       ],
     },
     {
@@ -222,7 +234,11 @@ const Skills = ({ location }) => {
                   height={cardSize[viewport].height}
                   width={cardSize[viewport].width}
                   marginBottom={
-                    viewport === Viewport.MOBILE ? theme.spacing.large : "0"
+                    viewport === Viewport.MOBILE
+                      ? theme.spacing.large
+                      : category.skills.length > 5 && index < 5
+                      ? theme.spacing.xlarge
+                      : "0"
                   }
                   marginRight={
                     viewport === Viewport.MOBILE && index % 2 === 1
