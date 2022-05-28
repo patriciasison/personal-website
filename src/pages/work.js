@@ -8,6 +8,9 @@ import {
   Container,
   ContainerDirection,
   Footer,
+  Heading,
+  HeadingSize,
+  HeadingWeight,
   Loading,
   Navbar,
   Text,
@@ -92,12 +95,22 @@ const NavigationSection = styled.div`
 `
 
 const Navigation = styled.div`
+  align-items: center;
+  border: 1px solid;
+  border-radius: 3px;
+  display: flex;
   color: ${({ color }) => color};
   cursor: pointer;
   font-size: ${theme.size.mid};
+  padding: ${theme.spacing.xxsmall};
 
-  &:not(:last-child) {
+  &:first-child {
+    padding-right: ${theme.spacing.small};
     margin-right: ${theme.spacing.small};
+  }
+
+  &:last-child {
+    padding-left: ${theme.spacing.small};
   }
 `
 
@@ -231,6 +244,12 @@ const Work = ({ location }) => {
 
   const companies = [
     {
+      id: "dtn",
+      name: "DTN Philippines Inc.",
+      position: "Software Engineer",
+      duration: "Nov 2020 - present",
+    },
+    {
       id: "phitopolis",
       name: "Phitopolis International Corp.",
       position: "Software Developer",
@@ -246,27 +265,39 @@ const Work = ({ location }) => {
       id: "orange",
       name: "Orange & Bronze Software Labs",
       position: "Quality Engineer Intern",
-      duration: "June 2015 - July 2015",
+      duration: "Jun 2015 - Jul 2015",
     },
   ]
 
   const experience = {
+    dtn: [
+      `compiled and enforced best practices and standards in <strong>React  
+      with Typescript</strong> to the team for the agronomic insights application, 
+      the pioneer innovation product in the company`,
+      `<strong>mentored new team members</strong> and other developers unfamiliar 
+      to the front-end tech stack`,
+      `contributed the <strong>most in quantity and quality</strong> in the front-end 
+      development of the agronomic product through ensuring components are developed 
+      in a modular and extensible manner, integrating features into the application 
+      with minimal to no bugs, and designing web pages to accurately replicate wireframes`,
+      `<strong>key person</strong> in providing insights, knowledge, and alignment for front-end 
+      development to the backend team, product team, UI/UX designers, and other 
+      external development teams`,
+      `led the <strong>analysis of user stories</strong> and tasks to iron out the
+       details, provide technical requirements, flag dependencies or blockers`,
+    ],
     phitopolis: [
       `picked up and familiarized with the <strong>MERN stack</strong> within the 
       first month to help with the migration of the dashboard web application that 
       utilizes big data for security analytics`,
       `majorly responsible for <strong>frontend development</strong> of the 
-        application — built React frontend framework from scratch, integrated its 
-        elements and API requests for the view and controller of the dashboard`,
-      `in charge of the <strong>UI/UX design</strong> of the dashboard, specifically 
-      creating the mockup screens with the user flow integrated`,
-      `developed some of the functionalities required in the <strong>backend</strong>, 
-      such as retrieving an aggregation of data for showing statistics`,
-      `ironed out <strong>business requirements</strong> to detailed product 
+        application`,
+      `in charge of the <strong>UI/UX design</strong> of the dashboard, creating 
+      wireframes with the user flow integrated as key reference for the client and 
+      the team`,
+      `developed some of the functionalities required in the <strong>backend</strong>`,
+      `ironed out <strong>business requirements</strong> to product 
       specifications and converted these into technical requirements`,
-      `wrote documentation and unit test code, cleaned up legacy code, refactored 
-      code, fixed bugs that provided better <strong>code maintenance, readability, 
-      and modularity</strong>`,
       `contributed in and enforced standards in the <strong>software development 
       process</strong> of the team such as sprints, code review, and QA testing`,
     ],
@@ -275,13 +306,15 @@ const Work = ({ location }) => {
       the teams I’ve been in, speeding things up through decreasing significant 
       amount of dependency on the team of dedicated front-end developers`,
       `<strong>developed key features</strong> in memberships, exams, and contest 
-      pages with consistent good quality of code — preventing site-breaking bugs, 
-      serving as a guide for the code structure of the team's future releases`,
+      pages`,
       `<strong>actively participated in meetings</strong> and discussions — helped 
       iron out product and technical requirements and decisions, completed use cases, 
       improved UI/UX, familiarized with the various features`,
-      `practiced <strong>agile methodology</strong> through frameworks Kanban and 
-      Scrum for optimal and efficient software development`,
+      `practiced <strong>Agile methodologies</strong> through frameworks Kanban and 
+      Scrum`,
+      `wrote documentation and unit test code, cleaned up legacy code, refactored 
+      code, fixed bugs that provided better <strong>code maintenance, readability, 
+      and modularity</strong>`,
       `showed <strong>flexibility</strong> through working on various kinds of work 
       assigned at any given time to get work done as efficient as possible`,
     ],
@@ -446,18 +479,18 @@ const Work = ({ location }) => {
         {isMobileView && (
           <CompanySectionMobile>
             <CompanyMainSection>
-              <Text
+              <Heading
                 color={colorScheme.selectedCompany}
-                size={TextSize.XLARGE}
-                weight={TextWeight.MEDIUM}
+                size={HeadingSize.XSMALL}
+                weight={HeadingWeight.MEDIUM}
                 marginBottom={theme.spacing.xxsmall}
               >
                 {selectedCompany.name}
-              </Text>
+              </Heading>
               <CompanySubSection>
                 <Text
                   color={colorScheme.position}
-                  size={TextSize.MID}
+                  size={TextSize.LARGE}
                   transform={TextTransform.UPPERCASE}
                   weight={TextWeight.MEDIUM}
                 >
@@ -474,11 +507,25 @@ const Work = ({ location }) => {
                 onClick={() => handleNavigationClick()}
               >
                 <ArrowBackIcon color="inherit" fontSize="inherit" />
+                <Text
+                  size={TextSize.MID}
+                  weight={TextWeight.MEDIUM}
+                  transform={TextTransform.CAPITALIZE}
+                >
+                  Prev
+                </Text>
               </Navigation>
               <Navigation
                 color={colorScheme.navigate}
                 onClick={() => handleNavigationClick(true)}
               >
+                <Text
+                  size={TextSize.MID}
+                  weight={TextWeight.MEDIUM}
+                  transform={TextTransform.CAPITALIZE}
+                >
+                  Next
+                </Text>
                 <ArrowForwardIcon color="inherit" fontSize="inherit" />
               </Navigation>
             </NavigationSection>
