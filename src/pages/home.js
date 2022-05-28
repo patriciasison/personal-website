@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
+import { navigate } from "gatsby"
 import styled from "styled-components"
 import logoAngular from "../assets/logo-angular.png"
 import logoApollo from "../assets/logo-apollo.png"
@@ -633,7 +634,7 @@ const Home = ({ location }) => {
             background={colorScheme.contactMeBg}
             foreground={colorScheme.contactMeFg}
             onClick={() => {
-              window.open(SiteRoute.CONTACT, "_self")
+              navigate(SiteRoute.CONTACT)
             }}
           >
             Contact Me
