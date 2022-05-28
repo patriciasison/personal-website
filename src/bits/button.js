@@ -10,7 +10,7 @@ const cssButton = ({ theme, background, foreground }) => `
   color: ${foreground};
   cursor: pointer;
   font-family: inherit;
-  font-size: ${theme.size.xxsmall};
+  font-size: ${theme.size.xsmall};
   outline: 0;
   padding: ${theme.spacing.mid} ${theme.spacing.xxlarge};
   text-transform: capitalize;

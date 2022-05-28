@@ -230,7 +230,7 @@ const CtaContainer = styled.div`
   @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     margin-top: calc(
       (${profileImageSize[Viewport.TABLET].height} / 2) +
-        ${theme.spacing.xxxlarge}
+        ${theme.spacing.xxlarge}
     );
     width: 100%;
   }
@@ -238,10 +238,12 @@ const CtaContainer = styled.div`
   @media screen and (min-width: ${theme.breakpoint[Viewport.DESKTOP].media}px) {
     margin-top: calc(
       (${profileImageSize[Viewport.DESKTOP].height} / 2) +
-        ${theme.spacing.xxxlarge}
+        ${theme.spacing.xxlarge}
     );
   }
 `
+
+const maxWidth = parseFloat(theme.breakpoint[Viewport.LAPTOP].media) - 1
 
 const FillerContainer = styled.div`
   height: calc(100vh - 402px);
@@ -252,32 +254,38 @@ const FillerContainer = styled.div`
         (2 * ${theme.spacing.xxxlarge})
     );
     max-height: calc(
-      (49 * ${theme.breakpoint[Viewport.TABLET].maxHeight}px) - 10px- (
-          ${profileImageSize[Viewport.TABLET].height} / 2
-        ) - (2 * ${theme.spacing.xxxlarge})
+      (${theme.breakpoint[Viewport.TABLET].maxHeight}px / 2) - 10px -
+        (${profileImageSize[Viewport.TABLET].height} / 2) -
+        (2 * ${theme.spacing.xxxlarge})
     );
     min-height: calc(
-      (49 * ${theme.breakpoint[Viewport.TABLET].minHeight}px) - 10px- (
-          ${profileImageSize[Viewport.TABLET].height} / 2
-        ) - (2 * ${theme.spacing.xxxlarge})
+      (${theme.breakpoint[Viewport.TABLET].minHeight}px / 2) - 10px -
+        (${profileImageSize[Viewport.TABLET].height} / 2) -
+        (2 * ${theme.spacing.xxxlarge})
     );
   }
 
-  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP].media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP]
+      .media}px) and (orientation: landscape) {
     height: calc(
       49vh - 10px - (${profileImageSize[Viewport.LAPTOP].height} / 2) -
         (2 * ${theme.spacing.xxxlarge})
     );
     max-height: calc(
-      (49 * ${theme.breakpoint[Viewport.LAPTOP].maxHeight}px) - 10px- (
-          ${profileImageSize[Viewport.LAPTOP].height} / 2
-        ) - (2 * ${theme.spacing.xxxlarge})
+      (${theme.breakpoint[Viewport.LAPTOP].maxHeight}px / 2) - 10px -
+        (${profileImageSize[Viewport.LAPTOP].height} / 2) -
+        (2 * ${theme.spacing.xxxlarge})
     );
     min-height: calc(
-      (49 * ${theme.breakpoint[Viewport.LAPTOP].minHeight}px) - 10px- (
-          ${profileImageSize[Viewport.LAPTOP].height} / 2
-        ) - (2 * ${theme.spacing.xxxlarge})
+      (${theme.breakpoint[Viewport.LAPTOP].minHeight}px / 2) - 10px -
+        (${profileImageSize[Viewport.LAPTOP].height} / 2) -
+        (2 * ${theme.spacing.xxxlarge})
     );
+  }
+
+  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP]
+      .media}px) and (orientation: portrait) {
+    max-height: 160px;
   }
 
   @media screen and (min-width: ${theme.breakpoint[Viewport.DESKTOP].media}px) {
@@ -286,14 +294,14 @@ const FillerContainer = styled.div`
         (2 * ${theme.spacing.xxxlarge})
     );
     max-height: calc(
-      (49 * ${theme.breakpoint[Viewport.DESKTOP].maxHeight}px) - 10px- (
-          ${profileImageSize[Viewport.DESKTOP].height} / 2
-        ) - (2 * ${theme.spacing.xxxlarge})
+      (${theme.breakpoint[Viewport.DESKTOP].maxHeight}px / 2) - 10px -
+        (${profileImageSize[Viewport.DESKTOP].height} / 2) -
+        (2 * ${theme.spacing.xxxlarge})
     );
     min-height: calc(
-      (49 * ${theme.breakpoint[Viewport.DESKTOP].minHeight}px) - 10px- (
-          ${profileImageSize[Viewport.DESKTOP].height} / 2
-        ) - (2 * ${theme.spacing.xxxlarge})
+      (${theme.breakpoint[Viewport.DESKTOP].minHeight}px / 2) - 10px -
+        (${profileImageSize[Viewport.DESKTOP].height} / 2) -
+        (2 * ${theme.spacing.xxxlarge})
     );
   }
 `
@@ -317,7 +325,8 @@ const SubContainer = styled.div`
     );
   }
 
-  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP].media}px) {
+  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP]
+      .media}px) and (orientation: landscape) {
     flex-direction: row;
     height: calc(
       100vh - 2 * (${theme.spacing.xxlarge} + ${theme.size.xxxsmall})
@@ -327,6 +336,13 @@ const SubContainer = styled.div`
       ${theme.breakpoint[Viewport.LAPTOP].minHeight}px - 2 *
         (2 * ${theme.spacing.large} + ${theme.size.xxxsmall})
     );
+  }
+
+  @media screen and (min-width: ${theme.breakpoint[Viewport.LAPTOP]
+      .media}px) and (orientation: portrait) {
+    flex-direction: row;
+    height: 100%;
+    margin-bottom: calc(${theme.spacing.xxlarge} + ${theme.size.xxxsmall});
   }
 
   @media screen and (min-width: ${theme.breakpoint[Viewport.DESKTOP].media}px) {
