@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useState } from "react"
 import { navigate } from "gatsby"
 import styled from "styled-components"
 import logoAngular from "../assets/logo-angular.png"
-import logoApollo from "../assets/logo-apollo.png"
 import logoGraphQL from "../assets/logo-graphql.png"
-import logoJava from "../assets/logo-java.png"
-import logoMongoDB from "../assets/logo-mongodb.png"
 import logoMySQL from "../assets/logo-mysql.png"
+import logoNextjs from "../assets/logo-nextjs.png"
 import logoPython from "../assets/logo-python.png"
 import logoReact from "../assets/logo-react.png"
+import logoRedux from "../assets/logo-redux.png"
+import logoTypescript from "../assets/logo-typescript.png"
 import patternDesktop from "../assets/pattern.png"
 import patternLaptop from "../assets/pattern-laptop.png"
 import patternMobile from "../assets/pattern-mobile.png"
@@ -495,24 +495,24 @@ const Home = ({ location }) => {
   const skillGroups = [
     [
       { name: "React", logo: logoReact },
-      { name: "Angular", logo: logoAngular },
-      { name: "Apollo", logo: logoApollo },
-      { name: "GraphQL", logo: logoGraphQL },
+      { name: "Typescript", logo: logoTypescript },
+      { name: "Redux", logo: logoRedux },
+      { name: "Next.js", logo: logoNextjs },
     ],
     [
+      { name: "Angular", logo: logoAngular },
+      { name: "GraphQL", logo: logoGraphQL },
       { name: "Python", logo: logoPython },
-      { name: "Java", logo: logoJava },
       { name: "MySQL", logo: logoMySQL },
-      { name: "MongoDB", logo: logoMongoDB },
     ],
   ]
 
   const skills = [
     { name: "React", logo: logoReact },
+    { name: "Redux", logo: logoRedux },
+    { name: "Next.js", logo: logoNextjs },
     { name: "Angular", logo: logoAngular },
-    { name: "Apollo", logo: logoApollo },
     { name: "Python", logo: logoPython },
-    { name: "Java", logo: logoJava },
     { name: "MySQL", logo: logoMySQL },
   ]
 
@@ -661,7 +661,7 @@ const Home = ({ location }) => {
               weight={HeadingWeight.MEDIUM}
             >
               Welcome to my personal website — designed, developed, and deployed
-              by me. I have five years of full-stack web development under my
+              by me. I have six years of full-stack web development under my
               belt. Feel free to know more{" "}
               <Link
                 href={SiteRoute.ABOUT_ME}
@@ -763,9 +763,9 @@ const Home = ({ location }) => {
             </SectionGroup>
           )}
           <Text color={colorScheme.sectionSeeMore} size={TextSize.LARGE}>
-            See more on{" "}
+            ...and more! See{" "}
             <Link href={SiteRoute.SKILLS} color={colorScheme.sectionSeeLink}>
-              Skills →
+              Skills page →
             </Link>
           </Text>
         </SectionContainer>
