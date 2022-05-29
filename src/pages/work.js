@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react"
-import ArrowBackIcon from "@material-ui/icons/ArrowBack"
-import ArrowForwardIcon from "@material-ui/icons/ArrowForward"
-import MinimizeIcon from "@material-ui/icons/Minimize"
-import NavigateNextIcon from "@material-ui/icons/NavigateNext"
+import ArrowBackIcon from "@mui/icons-material/ArrowBack"
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
+import MinimizeIcon from "@mui/icons-material/Minimize"
+import NavigateNextIcon from "@mui/icons-material/NavigateNext"
 import styled from "styled-components"
 import {
   Container,
