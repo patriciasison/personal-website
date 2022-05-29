@@ -510,7 +510,7 @@ const Work = ({ location }) => {
                 <Text
                   size={TextSize.MID}
                   weight={TextWeight.MEDIUM}
-                  transform={TextTransform.CAPITALIZE}
+                  transform={TextTransform.UPPERCASE}
                 >
                   Prev
                 </Text>
@@ -522,7 +522,7 @@ const Work = ({ location }) => {
                 <Text
                   size={TextSize.MID}
                   weight={TextWeight.MEDIUM}
-                  transform={TextTransform.CAPITALIZE}
+                  transform={TextTransform.UPPERCASE}
                 >
                   Next
                 </Text>
