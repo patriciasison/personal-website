@@ -64,7 +64,7 @@ const Wrapper = styled.div`
   justify-content: flex-end;
   left: 0;
   min-height: calc(
-    ${theme.breakpoint[Viewport.MOBILE].minHeight}px + 3 *
+    ${theme.breakpoint[Viewport.MOBILE].minHeight}px + 6 *
       ${theme.spacing.xxxlarge}
   );
   position: absolute;
