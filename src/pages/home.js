@@ -243,8 +243,6 @@ const CtaContainer = styled.div`
   }
 `
 
-const maxWidth = parseFloat(theme.breakpoint[Viewport.LAPTOP].media) - 1
-
 const FillerContainer = styled.div`
   height: calc(100vh - 402px);
 
@@ -594,7 +592,7 @@ const Home = ({ location }) => {
               background={colorScheme.contactMeBg}
               foreground={colorScheme.contactMeFg}
               onClick={() => {
-                window.open(SiteRoute.CONTACT, "_self")
+                navigate(SiteRoute.CONTACT)
               }}
             >
               Contact Me

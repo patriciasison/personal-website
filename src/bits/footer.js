@@ -1,4 +1,5 @@
 import React from "react"
+import { navigate } from "gatsby"
 import GitHubIcon from "@mui/icons-material/GitHub"
 import LinkedInIcon from "@mui/icons-material/LinkedIn"
 import MailIcon from "@mui/icons-material/Mail"
@@ -107,7 +108,7 @@ const Footer = ({ colorMode }) => {
             hoverColor={colorScheme.iconButtonHover}
             marginRight={theme.spacing.small}
             onClick={() => {
-              window.open(SiteRoute.CONTACT, "_self")
+              navigate(SiteRoute.CONTACT)
             }}
           >
             <MailIcon color="inherit" fontSize="inherit" />
