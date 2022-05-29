@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react"
 import styled from "styled-components"
+import { Download } from "@mui/icons-material"
 import logoGmail from "../assets/logo-gmail.png"
 import logoGithub from "../assets/logo-github.png"
 import logoLinkedIn from "../assets/logo-linkedin.png"
@@ -8,6 +9,7 @@ import pattern from "../assets/pattern1.png"
 import patternMobile from "../assets/pattern1-mobile.png"
 import patternTablet from "../assets/pattern1-tablet.png"
 import {
+  Button,
   Card,
   Container,
   ContainerAlign,
@@ -31,6 +33,8 @@ const ContactColor = {
     heading: theme.color.black.xlight,
     card: theme.color.white.norm,
     contactDetail: theme.color.black.light,
+    contactMeBg: `linear-gradient(90deg, #4aa2be, #a278d8)`,
+    contactMeFg: theme.color.white.norm,
   },
 }
 
@@ -122,6 +126,7 @@ const ContactGroup = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: ${theme.spacing.xxxlarge};
 
   & > div:nth-child(odd) {
     margin-right: ${theme.spacing.large};
@@ -141,15 +146,13 @@ const ImageContainer = styled.div`
 
   @media screen and (max-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     height: calc(
-      ${cardSize[Viewport.MOBILE].height} - ${theme.size.xsmall} -
-        ${theme.spacing.small}
+      ${cardSize[Viewport.MOBILE].height} - ${theme.spacing.xxxlarge}
     );
   }
 
   @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     height: calc(
-      ${cardSize[Viewport.TABLET].height} - ${theme.size.xsmall} -
-        ${theme.spacing.small}
+      ${cardSize[Viewport.TABLET].height} - ${theme.spacing.xxxlarge}
     );
   }
 
@@ -162,7 +165,7 @@ const ImageContainer = styled.div`
 `
 
 const Image = styled.img`
-  height: 72%;
+  height: 80%;
 
   @media screen and (min-width: ${theme.breakpoint[Viewport.TABLET].media}px) {
     height: 75%;
@@ -314,7 +317,7 @@ const Contact = ({ location }) => {
             ? theme.spacing.xxxlarge
             : viewport === Viewport.TABLET
             ? `calc(${theme.spacing.xxxxlarge} + ${theme.spacing.xxxlarge})`
-            : theme.spacing.xxxxlarge
+            : "6rem"
         }
       >
         <HeadingContainer>
@@ -408,7 +411,7 @@ const Contact = ({ location }) => {
               padding={
                 viewport === Viewport.MOBILE || viewport === Viewport.TABLET
                   ? theme.spacing.xlarge
-                  : theme.spacing.xxxlarge
+                  : theme.spacing.xxlarge
               }
               height={cardSize[viewport].height}
               width={cardSize[viewport].width}
@@ -427,6 +430,16 @@ const Contact = ({ location }) => {
             </Card>
           ))}
         </ContactGroup>
+        <a href="/files/Resume_Patricia_Sison.pdf" download>
+          <Button
+            background={colorScheme.contactMeBg}
+            foreground={colorScheme.contactMeFg}
+            borderRadius="3px"
+          >
+            <Download />
+            Download Resume
+          </Button>
+        </a>
       </Container>
 
       <Wrapper>
